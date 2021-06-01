@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Olga Lukina](https://up.htmlacademy.ru/react/7/user/325175).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Кривонос](https://htmlacademy.ru/profile/id1311037).
 
 ---
 
