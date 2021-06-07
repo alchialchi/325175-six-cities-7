@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OfferCard from '../offers/offer-card';
+import LocationList from '../locations/locations-list';
+import PlaceOptionsList from '../places/places-list';
 
 export default function MainPage(props) {
   const { offers } = props;
@@ -74,43 +76,7 @@ export default function MainPage(props) {
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
-            <section className="locations container">
-              <ul className="locations__list tabs__list">
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="/#">
-                    <span>Paris</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="/#">
-                    <span>Cologne</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="/#">
-                    <span>Brussels</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a
-                    className="locations__item-link tabs__item tabs__item--active"
-                    href="/#"
-                  >
-                    <span>Amsterdam</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="/#">
-                    <span>Hamburg</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="/#">
-                    <span>Dusseldorf</span>
-                  </a>
-                </li>
-              </ul>
-            </section>
+            <LocationList />
           </div>
           <div className="cities">
             <div className="cities__places-container container">
@@ -127,23 +93,7 @@ export default function MainPage(props) {
                       <use xlinkHref="#icon-arrow-select"></use>
                     </svg>
                   </span>
-                  <ul className="places__options places__options--custom places__options--opened">
-                    <li
-                      className="places__option places__option--active"
-                      tabIndex="0"
-                    >
-                      Popular
-                    </li>
-                    <li className="places__option" tabIndex="0">
-                      Price: low to high
-                    </li>
-                    <li className="places__option" tabIndex="0">
-                      Price: high to low
-                    </li>
-                    <li className="places__option" tabIndex="0">
-                      Top rated first
-                    </li>
-                  </ul>
+                  <PlaceOptionsList />
                 </form>
                 <div className="cities__places-list places__list tabs__content">
                   {offers.map((offer) => (
