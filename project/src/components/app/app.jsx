@@ -8,14 +8,16 @@ import SignIn from '../pages/sign-in';
 import Favorites from '../pages/favorites';
 import Room from '../pages/room';
 import NotFound from '../pages/not-found';
+
+import offersProp from '../blocks/offers/offer.prop';
 function App(props) {
-  const { data } = props;
+  const { offers } = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <MainPage offers={data}/>
+          <MainPage offers={offers}/>
         </Route>
         <Route exact path={AppRoute.SIGN_IN}>
           <SignIn />
@@ -35,7 +37,7 @@ function App(props) {
 }
 
 App.propTypes = {
-  data: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(offersProp),
 };
 
 export default App;
