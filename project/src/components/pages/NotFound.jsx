@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from '../blocks/header/header';
+import Header from '../blocks/header/Header';
 
 function NotFound() {
   return (

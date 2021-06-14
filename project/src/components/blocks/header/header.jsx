@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import Logo from './logo';
+import Logo from './Logo';
 
 export default function Header(props) {
   const { loggedOut = false } = props;

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import HiddenSvg from '../svg/hidden-svg';
-import Header from '../blocks/header/header';
+import HiddenSvg from '../svg/HiddenSvg';
+import Header from '../blocks/header/Header';
 
 export default function Room() {
   return (

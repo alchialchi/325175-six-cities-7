@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../blocks/header/header';
-import HiddenSvg from '../svg/hidden-svg';
+import Header from '../blocks/header/Header';
+import HiddenSvg from '../svg/HiddenSvg';
 
 export default function SignIn() {
   return (

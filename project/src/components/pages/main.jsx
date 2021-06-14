@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OfferCard from '../blocks/offers/offer-card';
-import LocationList from '../blocks/locations/locations-list';
-import PlaceOptionsList from '../blocks/places/places-list';
-import HiddenSvg from '../svg/hidden-svg';
-import Header from '../blocks/header/header';
+import OfferCard from '../blocks/offers/OfferCard';
+import LocationList from '../blocks/locations/LocationsList';
+import PlaceOptionsList from '../blocks/places/PlacesList';
+import HiddenSvg from '../svg/HiddenSvg';
+import Header from '../blocks/header/Header';
 import offersProp from '../blocks/offers/offer.prop';
 
 export default function MainPage(props) {

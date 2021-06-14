@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'react-uuid';
 
-import LocationItem from './location-item';
+import LocationItem from './LocationItem';
 
 const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
