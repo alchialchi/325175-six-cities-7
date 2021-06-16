@@ -1,6 +1,8 @@
+import uuid from 'react-uuid';
+
 const offers = [
   {
-    bedroooms: 2,
+    bedrooms: 2,
     city: {
       location: {
         latitude: 52.370216,
@@ -17,7 +19,7 @@ const offers = [
       isPro: true,
       name: 'Angelina',
     },
-    id: 1,
+    id: uuid(),
     images: ['img/apartment-01.jpg'],
     isFavorite: false,
     isPremium: false,
@@ -31,10 +33,10 @@ const offers = [
     price: 120,
     rating: 4.8,
     title: 'Beautiful & luxurious studio at great location',
-    type: 'apartment',
+    type: 'Apartment',
   },
   {
-    bedroooms: 3,
+    bedrooms: 3,
     city: {
       location: {
         latitude: 52.370216,
@@ -51,7 +53,7 @@ const offers = [
       isPro: true,
       name: 'Angelina',
     },
-    id: 2,
+    id: uuid(),
     images: ['img/apartment-01.jpg'],
     isFavorite: false,
     isPremium: false,
@@ -65,10 +67,10 @@ const offers = [
     price: 120,
     rating: 4.8,
     title: 'Beautiful & luxurious studio at great location',
-    type: 'apartment',
+    type: 'Apartment',
   },
   {
-    bedroooms: 4,
+    bedrooms: 4,
     city: {
       location: {
         latitude: 52.370216,
@@ -85,7 +87,7 @@ const offers = [
       isPro: true,
       name: 'Angelina',
     },
-    id: 3,
+    id: uuid(),
     images: ['img/apartment-01.jpg'],
     isFavorite: false,
     isPremium: false,
@@ -99,10 +101,10 @@ const offers = [
     price: 120,
     rating: 4.8,
     title: 'Beautiful & luxurious studio at great location',
-    type: 'apartment',
+    type: 'Apartment',
   },
   {
-    bedroooms: 2,
+    bedrooms: 2,
     city: {
       location: {
         latitude: 52.370216,
@@ -119,7 +121,7 @@ const offers = [
       isPro: true,
       name: 'Angelina',
     },
-    id: 4,
+    id: uuid(),
     images: ['img/apartment-01.jpg'],
     isFavorite: false,
     isPremium: false,
@@ -133,7 +135,7 @@ const offers = [
     price: 120,
     rating: 4.8,
     title: 'Beautiful & luxurious studio at great location',
-    type: 'apartment',
+    type: 'Apartment',
   },
 ];
 

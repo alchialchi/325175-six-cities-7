@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OfferCard from '../blocks/offers/OfferCard';
+import OffersList from '../blocks/offers/OffersList';
 import LocationList from '../blocks/locations/LocationsList';
 import PlaceOptionsList from '../blocks/places/PlacesList';
 import HiddenSvg from '../svg/HiddenSvg';
@@ -37,11 +37,7 @@ export default function MainPage(props) {
                   </span>
                   <PlaceOptionsList />
                 </form>
-                <div className="cities__places-list places__list tabs__content">
-                  {offers.map((offer) => (
-                    <OfferCard key={offer.id} offer={offer} />
-                  ))}
-                </div>
+                <OffersList offers={offers} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"/>
@@ -55,5 +51,5 @@ export default function MainPage(props) {
 }
 
 MainPage.propTypes = {
-  offers: PropTypes.arrayOf(offersProp),
+  offers: PropTypes.arrayOf(offersProp).isRequired,
 };

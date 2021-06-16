@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import offerProp from './offer.prop';
+import { getRatingInPercent } from '../../../utils';
 
 export default function OfferCard(props) {
-  const { offer } = props;
+  const { offer, onMouseEnter, onMouseLeave } = props;
 
   const {
     isPremium,
@@ -14,10 +16,11 @@ export default function OfferCard(props) {
     id,
     title,
     type,
+    rating,
   } = offer;
 
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
@@ -54,7 +57,7 @@ export default function OfferCard(props) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: getRatingInPercent(rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -69,4 +72,6 @@ export default function OfferCard(props) {
 
 OfferCard.propTypes = {
   offer: offerProp,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };

@@ -10,8 +10,10 @@ import Room from '../pages/Room';
 import NotFound from '../pages/NotFound';
 
 import offersProp from '../blocks/offers/offer.prop';
+import reviewsProp from '../blocks/review/review.prop';
+
 function App(props) {
-  const { offers } = props;
+  const { offers, reviews} = props;
 
   return (
     <BrowserRouter>
@@ -26,7 +28,7 @@ function App(props) {
           <Favorites offers={offers} />
         </Route>
         <Route exact path={AppRoute.ROOM}>
-          <Room />
+          <Room offers={offers} reviews={reviews} />
         </Route>
         <Route>
           <NotFound />
@@ -37,7 +39,8 @@ function App(props) {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(offersProp),
+  offers: PropTypes.arrayOf(offersProp).isRequired,
+  reviews: PropTypes.arrayOf(reviewsProp).isRequired,
 };
 
 export default App;
