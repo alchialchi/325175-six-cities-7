@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../../const';
 
 export default function Logo() {
   return (
-    <Link className="header__logo-link header__logo-link--active" to="/">
+    <Link className="header__logo-link header__logo-link--active" to={AppRoute.ROOT}>
       <img
         className="header__logo"
         src="img/logo.svg"

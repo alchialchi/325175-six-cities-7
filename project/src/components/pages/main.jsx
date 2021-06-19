@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OfferCard from '../blocks/offers/offer-card';
-import LocationList from '../blocks/locations/locations-list';
-import PlaceOptionsList from '../blocks/places/places-list';
-import HiddenSvg from '../svg/hidden-svg';
-import Header from '../blocks/header/header';
+import OffersList from '../blocks/offers/OffersList';
+import LocationList from '../blocks/locations/LocationsList';
+import PlaceOptionsList from '../blocks/places/PlacesList';
+import HiddenSvg from '../svg/HiddenSvg';
+import Header from '../blocks/header/Header';
+import offersProp from '../blocks/offers/offer.prop';
 
 export default function MainPage(props) {
   const { offers } = props;
@@ -36,11 +37,7 @@ export default function MainPage(props) {
                   </span>
                   <PlaceOptionsList />
                 </form>
-                <div className="cities__places-list places__list tabs__content">
-                  {offers.map((offer) => (
-                    <OfferCard key={offer.id} />
-                  ))}
-                </div>
+                <OffersList offers={offers} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"/>
@@ -54,5 +51,5 @@ export default function MainPage(props) {
 }
 
 MainPage.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(offersProp).isRequired,
 };

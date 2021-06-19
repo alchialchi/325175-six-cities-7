@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import Logo from './logo';
+import { AppRoute } from '../../../const';
+import Logo from './Logo';
 
 export default function Header(props) {
   const { loggedOut = false } = props;
@@ -20,7 +21,7 @@ export default function Header(props) {
                 <li className="header__nav-item user">
                   <Link
                     className="header__nav-link header__nav-link--profile"
-                    href="/#"
+                    to={AppRoute.SIGN_IN}
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper" />
                     <span className="header__login">Sign in</span>

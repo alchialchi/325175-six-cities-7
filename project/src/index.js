@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import App from './components/app/app';
-
-const QUANTITY_OFFERS = 6;
-
-const offers = new Array(QUANTITY_OFFERS).fill('card-').map((value, index) => ({id: value + index}));
+import offers from './mocks/offers';
+import reviews from './mocks/reviews';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App data={offers} />
+    <App offers={offers} reviews={reviews} />
   </React.StrictMode>,
   document.getElementById('root'));
