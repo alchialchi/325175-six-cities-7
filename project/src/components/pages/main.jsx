@@ -5,6 +5,7 @@ import LocationList from '../blocks/locations/LocationsList';
 import PlaceOptionsList from '../blocks/places/PlacesList';
 import HiddenSvg from '../svg/HiddenSvg';
 import Header from '../blocks/header/Header';
+import Map from '../blocks/map/Map';
 import offersProp from '../blocks/offers/offer.prop';
 
 export default function MainPage(props) {
@@ -40,7 +41,9 @@ export default function MainPage(props) {
                 <OffersList offers={offers} />
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"/>
+                <section className="cities__map map">
+                  <Map city={offers[0].city} offers={offers}/>
+                </section>
               </div>
             </div>
           </div>
