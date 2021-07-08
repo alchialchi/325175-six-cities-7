@@ -1,12 +1,15 @@
-
+import offers from '../mocks/offers';
+import reviews from '../mocks/reviews';
+import { CITIES, SortType } from '../const';
 import { ActionType } from './action';
 
-import { DEFAULT_CITY } from '../const';
-import offers from '../mocks/offers';
-
 const initialState = {
-  city: DEFAULT_CITY,
-  currentOffers: offers.filter((offer) => offer.city === DEFAULT_CITY),
+  offers: offers,
+  reviews: reviews,
+  cities: Object.values(CITIES),
+  city: CITIES.PARIS.name,
+  sortType: SortType.DEFAULT,
+  activeOffer: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,8 +17,17 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return {
         ...state,
-        city: action.city,
-        currentOffers: offers.filter((offer) => offer.city === action.payload),
+        city: action.payload,
+      };
+    case ActionType.ACTIVE_OFFER_ID:
+      return {
+        ...state,
+        activeOffer: action.payload,
+      };
+    case ActionType.SORT:
+      return {
+        ...state,
+        sortType: action.payload,
       };
     default:
       return state;

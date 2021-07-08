@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import HiddenSvg from '../svg/HiddenSvg';
 import Header from '../blocks/header/Header';
@@ -8,7 +9,7 @@ import FavoriteItems from '../blocks/favorites/FavoriteItems';
 import offersProp from '../blocks/offers/offer.prop';
 import { AppRoute } from '../../const';
 
-export default function Favorites(props) {
+function Favorites(props) {
   const { offers } = props;
 
   return (
@@ -39,3 +40,9 @@ export default function Favorites(props) {
 Favorites.propTypes = {
   offers: PropTypes.arrayOf(offersProp),
 };
+
+const mapStateToProps = (state) => ({
+  offers: state.offers.filter(({ isFavorite}) => isFavorite),
+});
+
+export default connect(mapStateToProps)(Favorites);

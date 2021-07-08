@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import offerProp from '../offers/offer.prop';
+import { AppRoute } from '../../../const';
 
-export default function FavoriteCard(props) {
-  const { offer } = props;
-
+export default function FavoriteCard({ offer }) {
   const {
     id,
     previewImage,
@@ -16,7 +15,7 @@ export default function FavoriteCard(props) {
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link to={`offer/${id}`} >
+        <Link to={`${AppRoute.OFFER}/${id}`} >
           <img
             className="place-card__image"
             src={previewImage}

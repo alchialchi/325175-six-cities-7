@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 
 import offerProp from './offer.prop';
 import { getRatingInPercent } from '../../../utils';
+import { OfferType, CardType, AppRoute } from '../../../const';
+import { GetImageType } from './helpers';
 
 export default function OfferCard(props) {
-  const { offer, onMouseEnter, onMouseLeave } = props;
+  const { offer, onMouseEnter, cardType = CardType.CITIES } = props;
 
   const {
     isPremium,
@@ -20,19 +22,22 @@ export default function OfferCard(props) {
   } = offer;
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      {isPremium ?
+    <article className={`${cardType}${cardType === CardType.CITIES ? '__place-card' : '__card'} place-card`}
+      onMouseEnter={cardType === CardType.FAVORITES ? null : () => onMouseEnter(id)}
+      onMouseLeave={cardType === CardType.FAVORITES ? null : () => onMouseEnter({})}
+    >
+      {isPremium && cardType === CardType.CITIES ?
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
         : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`offer/${id}`}>
+        <Link to={`${AppRoute.OFFER}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
-            width="260"
-            height="200"
+            width={cardType === CardType.FAVORITES ? GetImageType.FAVORITES.width : GetImageType.CITIES.width}
+            height={cardType === CardType.FAVORITES ? GetImageType.FAVORITES.height : GetImageType.CITIES.height}
             alt="Place"
           />
         </Link>
@@ -62,16 +67,16 @@ export default function OfferCard(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`offer/${id}`}>{title}</Link>
+          <Link to={`${AppRoute.OFFER}/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{OfferType[type]}</p>
       </div>
     </article>
   );
 }
 
 OfferCard.propTypes = {
-  offer: offerProp,
+  ...offerProp,
+  cardType: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func,
 };

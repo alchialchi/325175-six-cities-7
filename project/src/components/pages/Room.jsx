@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import HiddenSvg from '../svg/HiddenSvg';
 import Header from '../blocks/header/Header';
 import ReviewsList from '../blocks/review/ReviewsList';
 import ReviewForm from '../blocks/review/ReviewForm';
-import OfferCard from '../blocks/offers/OfferCard';
+import OffersList from '../blocks/offers/OffersList';
+import Map from '../blocks/map/Map';
 
 import offersProp from '../blocks/offers/offer.prop';
 import reviewsProp from '../blocks/review/review.prop';
 
 import { getRatingInPercent } from '../../utils';
-export default function Room(props) {
-  const { offers, reviews } = props;
-  const { id } = useParams();
+import { CardType } from '../../const';
 
-  const activeOffer = offers.find((offer) => offer.id === id);
+const NEAR_OFFERS_MAX = 3;
+
+function Room(props) {
+  const { offers, reviews, filteredOffer, activeOffer } = props;
+  const nearOffers = offers.slice(0, NEAR_OFFERS_MAX);
+
   const {
     isPremium,
     isFavorite,
@@ -30,7 +34,8 @@ export default function Room(props) {
     images,
     host,
     description,
-  } = activeOffer;
+    city,
+  } = filteredOffer;
 
   return (
     <React.Fragment>
@@ -141,7 +146,9 @@ export default function Room(props) {
                 </section>
               </div>
             </div>
-            <section className="property__map map" />
+            <section className="property__map map">
+              <Map offers={offers} city={city} activeOffer={activeOffer} />
+            </section>
           </section>
           <div className="container">
             <section className="near-places places">
@@ -149,7 +156,7 @@ export default function Room(props) {
                 Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
-                {offers.slice(0, 3).map((offer) => <OfferCard key={offer.id} offer={offer}/>)}
+                <OffersList offers={nearOffers} type={CardType.NEAR_PLACES}/>
               </div>
             </section>
           </div>
@@ -160,6 +167,19 @@ export default function Room(props) {
 }
 
 Room.propTypes = {
-  offers: PropTypes.arrayOf(offersProp).isRequired,
+  ...offersProp,
+  filteredOffer: PropTypes.shape(offersProp).isRequired,
   reviews: PropTypes.arrayOf(reviewsProp).isRequired,
+  activeOffer: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.shape({}),
+  ]),
 };
+
+const mapStateToProps = (state) => ({
+  activeOffer: state.activeOffer,
+});
+
+export { Room };
+export default connect(mapStateToProps)(Room);
