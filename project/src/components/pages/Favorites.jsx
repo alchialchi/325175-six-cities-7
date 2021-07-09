@@ -10,7 +10,7 @@ import offersProp from '../blocks/offers/offer.prop';
 import { AppRoute } from '../../const';
 
 function Favorites(props) {
-  const { offers } = props;
+  const { offers, city } = props;
 
   return (
     <React.Fragment>
@@ -22,7 +22,7 @@ function Favorites(props) {
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                <FavoriteItems offers={offers} />
+                <FavoriteItems offers={offers} city={city} />
               </ul>
             </section>
           </div>
@@ -38,10 +38,12 @@ function Favorites(props) {
 }
 
 Favorites.propTypes = {
+  city: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offersProp),
 };
 
 const mapStateToProps = (state) => ({
+  city: state.city,
   offers: state.offers.filter(({ isFavorite}) => isFavorite),
 });
 
