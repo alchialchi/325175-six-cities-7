@@ -41,7 +41,7 @@ function Room(props) {
     <React.Fragment>
       <HiddenSvg />
       <div className="page">
-        <Header />
+        <Header loggedOut />
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">

@@ -19,7 +19,7 @@ export default PropTypes.shape(
       isPro: PropTypes.bool.isRequired,
       name: PropTypes.string.isRequired,
     }),
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     images: PropTypes.arrayOf(PropTypes.string),
     isFavorite: PropTypes.bool.isRequired,
     isPremium: PropTypes.bool.isRequired,

@@ -5,7 +5,7 @@ import Map from '../map/Map';
 import OffersList from '../offers/OffersList';
 import SortList from '../sort/SortList';
 import offerProp from '../offers/offer.prop';
-import { CITIES } from '../../../const';
+import { CardType, CITIES } from '../../../const';
 
 export default function Cities({ offers, city, activeOffer }) {
   const offersCount = offers.length;
@@ -19,7 +19,7 @@ export default function Cities({ offers, city, activeOffer }) {
             {offersCount} places to stay in {city}
           </b>
           <SortList />
-          <OffersList offers={offers} activeOffer={activeOffer} />
+          <OffersList offers={offers} activeOffer={activeOffer} type={CardType.CITIES} />
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">

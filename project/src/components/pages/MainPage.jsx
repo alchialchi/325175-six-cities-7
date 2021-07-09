@@ -16,7 +16,7 @@ function MainPage({ offers, city, activeOffer }) {
     <React.Fragment>
       <HiddenSvg />
       <div className="page page--gray page--main">
-        <Header />
+        <Header loggedOut />
         <main className={`page__main page__main--index ${offers.length === 0 ? 'page__main--index-empty' : ''}`}>
           <h1 className="visually-hidden">Cities</h1>
           <LocationList />

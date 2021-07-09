@@ -7,7 +7,7 @@ import { AppRoute } from '../../const';
 function NotFound() {
   return (
     <section className="page">
-      <Header />
+      <Header loggedOut />
       <section className="container">
         <h1>404. Page not found</h1>
         <Link to={AppRoute.ROOT}>Вернуться на главную</Link>
