@@ -2,26 +2,45 @@ import { useEffect } from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-export default function useMapMarker(map, offers) {
+const CustomPin = {
+  DEFAULT: {
+    iconUrl: 'img/pin.svg',
+    iconSize: [30, 40],
+    iconAnchor: [15, 30],
+  },
+  ACTIVE: {
+    iconUrl: 'img/pin-active.svg',
+    iconSize: [30, 40],
+    iconAnchor: [15, 30],
+  },
+};
+
+export default function useMapMarker(map, offers, activeOffer, city) {
+  const defaultPin = leaflet.icon(CustomPin.DEFAULT);
+  const activePin = leaflet.icon(CustomPin.ACTIVE);
 
   useEffect(() => {
-    const icon = leaflet.icon({
-      iconUrl: 'img/pin.svg',
-      iconSize: [30, 40],
-      iconAnchor: [15, 30],
-    });
+    const markers = leaflet.layerGroup();
 
     if (map) {
-      offers.forEach(({location}) => {
+      markers.addTo(map);
+
+      offers.forEach(({id, location}) => {
         leaflet
           .marker({
             lat: location.latitude,
             lng: location.longitude,
           }, {
-            icon,
+            icon: id === activeOffer
+              ? activePin
+              : defaultPin,
           })
-          .addTo(map);
+          .addTo(markers);
       });
+      map.flyTo([city.location.latitude, city.location.longitude], city.location.zoom);
     }
-  }, [map, offers]);
+    return () => {
+      markers.clearLayers();
+    };
+  }, [map, offers, city, activeOffer, activePin, defaultPin]);
 }
