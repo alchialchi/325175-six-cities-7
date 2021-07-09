@@ -167,8 +167,8 @@ function Room(props) {
 }
 
 Room.propTypes = {
-  ...offersProp,
-  filteredOffer: PropTypes.shape(offersProp).isRequired,
+  offers: PropTypes.arrayOf(offersProp),
+  filteredOffer: offersProp,
   reviews: PropTypes.arrayOf(reviewsProp).isRequired,
   activeOffer: PropTypes.oneOfType([
     PropTypes.string,

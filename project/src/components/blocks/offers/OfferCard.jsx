@@ -76,7 +76,7 @@ export default function OfferCard(props) {
 }
 
 OfferCard.propTypes = {
-  ...offerProp,
+  offer: offerProp,
   cardType: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func,
 };
