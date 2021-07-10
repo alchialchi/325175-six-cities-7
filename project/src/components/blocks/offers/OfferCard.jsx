@@ -18,7 +18,7 @@ const GetImageType = {
 };
 
 export default function OfferCard(props) {
-  const { offer, onMouseEnter, cardType = CardType.CITIES } = props;
+  const { offer, onMouseEnter, cardType } = props;
 
   const {
     isPremium,
