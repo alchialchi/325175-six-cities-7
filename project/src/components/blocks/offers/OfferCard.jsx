@@ -5,7 +5,17 @@ import { Link } from 'react-router-dom';
 import offerProp from './offer.prop';
 import { getRatingInPercent } from '../../../utils';
 import { OfferType, CardType, AppRoute } from '../../../const';
-import { GetImageType } from './helpers';
+
+const GetImageType = {
+  CITIES: {
+    width: 260,
+    height: 200,
+  },
+  FAVORITES: {
+    width: 150,
+    height: 110,
+  },
+};
 
 export default function OfferCard(props) {
   const { offer, onMouseEnter, cardType = CardType.CITIES } = props;

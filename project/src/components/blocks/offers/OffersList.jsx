@@ -6,7 +6,17 @@ import { CardType } from '../../../const';
 
 import offerProp from './offer.prop';
 import OfferCard from './OfferCard';
-import { getClassByType } from './helpers';
+
+const getClassByType = (type) => {
+  switch (type) {
+    case CardType.FAVORITES:
+      return `${type}__places`;
+    case CardType.NEAR_PLACES:
+      return `${type}__list places__list`;
+    default:
+      return `${type}__places-list places__list tabs__content`;
+  }
+};
 
 function OffersList({ offers, handleMouseEnter, type = CardType.CITIES }) {
   return (
