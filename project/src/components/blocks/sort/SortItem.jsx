@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SortType } from '../../../const';
+import { SORT_TYPE } from '../../../const';
 
 function SortItem({ type, isActive, onClick }) {
   return (
     <li
       className={`places__option ${isActive ? 'places__option--active' : ''}`}
       tabIndex="0"
-      onClick={() => onClick(SortType[type])}
+      onClick={() => onClick(SORT_TYPE[type])}
     >
-      {SortType[type].text}
+      {SORT_TYPE[type].text}
     </li>
   );
 }

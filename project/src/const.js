@@ -68,7 +68,7 @@ export const CITIES = {
   },
 };
 
-export const SortType = {
+export const SORT_TYPE = {
   DEFAULT: {
     name: 'default',
     text: 'Popular',
