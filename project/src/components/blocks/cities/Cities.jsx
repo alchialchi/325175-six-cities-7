@@ -8,15 +8,13 @@ import offerProp from '../offers/offer.prop';
 import { CardType, CITIES } from '../../../const';
 
 export default function Cities({ offers, city, activeOffer }) {
-  const offersCount = offers.length;
-
   return (
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">
-            {offersCount} places to stay in {city}
+            {offers.length} places to stay in {city}
           </b>
           <SortList />
           <OffersList offers={offers} activeOffer={activeOffer} type={CardType.CITIES} />
