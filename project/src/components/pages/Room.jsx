@@ -1,22 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import HiddenSvg from '../svg/HiddenSvg';
 import Header from '../blocks/header/Header';
 import ReviewsList from '../blocks/review/ReviewsList';
 import ReviewForm from '../blocks/review/ReviewForm';
-import OfferCard from '../blocks/offers/OfferCard';
+import OffersList from '../blocks/offers/OffersList';
+import Map from '../blocks/map/Map';
 
 import offersProp from '../blocks/offers/offer.prop';
 import reviewsProp from '../blocks/review/review.prop';
 
 import { getRatingInPercent } from '../../utils';
-export default function Room(props) {
-  const { offers, reviews } = props;
-  const { id } = useParams();
+import { CARD_TYPES } from '../../const';
 
-  const activeOffer = offers.find((offer) => offer.id === id);
+const NEAR_OFFERS_MAX = 3;
+
+function Room(props) {
+  const { offers, reviews, activeOffer } = props;
+  const nearOffers = offers.slice(0, NEAR_OFFERS_MAX);
+  const { id } = useParams();
+  const filteredOffer = offers.find((offer) => offer.id === id);
+
   const {
     isPremium,
     isFavorite,
@@ -30,13 +37,14 @@ export default function Room(props) {
     images,
     host,
     description,
-  } = activeOffer;
+    city,
+  } = filteredOffer;
 
   return (
     <React.Fragment>
       <HiddenSvg />
       <div className="page">
-        <Header />
+        <Header loggedOut />
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">
@@ -141,7 +149,9 @@ export default function Room(props) {
                 </section>
               </div>
             </div>
-            <section className="property__map map" />
+            <section className="property__map map">
+              <Map offers={offers} city={city} activeOffer={activeOffer} />
+            </section>
           </section>
           <div className="container">
             <section className="near-places places">
@@ -149,7 +159,7 @@ export default function Room(props) {
                 Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
-                {offers.slice(0, 3).map((offer) => <OfferCard key={offer.id} offer={offer}/>)}
+                <OffersList offers={nearOffers} type={CARD_TYPES.NEAR_PLACES}/>
               </div>
             </section>
           </div>
@@ -160,6 +170,20 @@ export default function Room(props) {
 }
 
 Room.propTypes = {
-  offers: PropTypes.arrayOf(offersProp).isRequired,
+  offers: PropTypes.arrayOf(offersProp),
   reviews: PropTypes.arrayOf(reviewsProp).isRequired,
+  activeOffer: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.shape({}),
+  ]),
 };
+
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  reviews: state.reviews,
+  activeOffer: state.activeOffer,
+});
+
+export { Room };
+export default connect(mapStateToProps)(Room);
