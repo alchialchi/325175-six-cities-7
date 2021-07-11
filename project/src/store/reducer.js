@@ -1,6 +1,6 @@
 import offers from '../mocks/offers';
 import reviews from '../mocks/reviews';
-import { CITIES, SORT_TYPE } from '../const';
+import { CITIES, SORT_TYPES } from '../const';
 import { ActionType } from './action';
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
   reviews: reviews,
   cities: Object.values(CITIES),
   city: CITIES.PARIS.name,
-  sortType: SORT_TYPE.DEFAULT,
+  sortType: SORT_TYPES.DEFAULT,
   activeOffer: null,
 };
 

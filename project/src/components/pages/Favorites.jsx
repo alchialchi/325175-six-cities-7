@@ -7,7 +7,7 @@ import HiddenSvg from '../svg/HiddenSvg';
 import Header from '../blocks/header/Header';
 import FavoriteItems from '../blocks/favorites/FavoriteItems';
 import offersProp from '../blocks/offers/offer.prop';
-import { AppRoute } from '../../const';
+import { APP_ROUTES } from '../../const';
 
 function Favorites(props) {
   const { offers, city } = props;
@@ -28,7 +28,7 @@ function Favorites(props) {
           </div>
         </main>
         <footer className="footer container">
-          <Link className="footer__logo-link" to={AppRoute.ROOT}>
+          <Link className="footer__logo-link" to={APP_ROUTES.ROOT}>
             <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
           </Link>
         </footer>

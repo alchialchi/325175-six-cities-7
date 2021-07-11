@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
-import { AppRoute } from '../../const';
+import { APP_ROUTES } from '../../const';
 import MainPage from '../pages/MainPage';
 import SignIn from '../pages/SignIn';
 import Favorites from '../pages/Favorites';
@@ -12,16 +12,16 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={AppRoute.ROOT}>
+        <Route exact path={APP_ROUTES.ROOT}>
           <MainPage />
         </Route>
-        <Route exact path={AppRoute.SIGN_IN}>
+        <Route exact path={APP_ROUTES.SIGN_IN}>
           <SignIn />
         </Route>
-        <Route exact path={AppRoute.FAVORITES}>
+        <Route exact path={APP_ROUTES.FAVORITES}>
           <Favorites />
         </Route>
-        <Route exact path={`${AppRoute.OFFER}/:id`}>
+        <Route exact path={`${APP_ROUTES.OFFER}/:id`}>
           <Room />;
         </Route>
         <Route>

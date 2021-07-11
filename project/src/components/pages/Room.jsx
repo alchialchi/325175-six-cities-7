@@ -14,7 +14,7 @@ import offersProp from '../blocks/offers/offer.prop';
 import reviewsProp from '../blocks/review/review.prop';
 
 import { getRatingInPercent } from '../../utils';
-import { CardType } from '../../const';
+import { CARD_TYPES } from '../../const';
 
 const NEAR_OFFERS_MAX = 3;
 
@@ -159,7 +159,7 @@ function Room(props) {
                 Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
-                <OffersList offers={nearOffers} type={CardType.NEAR_PLACES}/>
+                <OffersList offers={nearOffers} type={CARD_TYPES.NEAR_PLACES}/>
               </div>
             </section>
           </div>

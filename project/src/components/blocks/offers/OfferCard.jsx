@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 import offerProp from './offer.prop';
 import { getRatingInPercent } from '../../../utils';
-import { OfferType, CardType, AppRoute } from '../../../const';
+import { OFFER_TYPES, CARD_TYPES, APP_ROUTES} from '../../../const';
 
-const GetImageType = {
+const IMAGE_TYPES = {
   CITIES: {
     width: 260,
     height: 200,
@@ -32,22 +32,22 @@ export default function OfferCard(props) {
   } = offer;
 
   return (
-    <article className={`${cardType}${cardType === CardType.CITIES ? '__place-card' : '__card'} place-card`}
-      onMouseEnter={cardType === CardType.FAVORITES ? null : () => onMouseEnter(id)}
-      onMouseLeave={cardType === CardType.FAVORITES ? null : () => onMouseEnter({})}
+    <article className={`${cardType}${cardType === CARD_TYPES.CITIES ? '__place-card' : '__card'} place-card`}
+      onMouseEnter={cardType === CARD_TYPES.FAVORITES ? null : () => onMouseEnter(id)}
+      onMouseLeave={cardType === CARD_TYPES.FAVORITES ? null : () => onMouseEnter({})}
     >
-      {isPremium && cardType === CardType.CITIES ?
+      {isPremium && cardType === CARD_TYPES.CITIES ?
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
         : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${AppRoute.OFFER}/${id}`}>
+        <Link to={`${APP_ROUTES.OFFER}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
-            width={cardType === CardType.FAVORITES ? GetImageType.FAVORITES.width : GetImageType.CITIES.width}
-            height={cardType === CardType.FAVORITES ? GetImageType.FAVORITES.height : GetImageType.CITIES.height}
+            width={cardType === CARD_TYPES.FAVORITES ? IMAGE_TYPES.FAVORITES.width : IMAGE_TYPES.CITIES.width}
+            height={cardType === CARD_TYPES.FAVORITES ? IMAGE_TYPES.FAVORITES.height : IMAGE_TYPES.CITIES.height}
             alt="Place"
           />
         </Link>
@@ -77,9 +77,9 @@ export default function OfferCard(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.OFFER}/${id}`}>{title}</Link>
+          <Link to={`${APP_ROUTES.OFFER}/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{OfferType[type]}</p>
+        <p className="place-card__type">{OFFER_TYPES[type]}</p>
       </div>
     </article>
   );

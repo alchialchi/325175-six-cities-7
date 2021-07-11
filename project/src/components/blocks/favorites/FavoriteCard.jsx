@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import offerProp from '../offers/offer.prop';
-import { AppRoute } from '../../../const';
+import { APP_ROUTES } from '../../../const';
 
 export default function FavoriteCard({ offer }) {
   const {
@@ -15,7 +15,7 @@ export default function FavoriteCard({ offer }) {
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link to={`${AppRoute.OFFER}/${id}`} >
+        <Link to={`${APP_ROUTES.OFFER}/${id}`} >
           <img
             className="place-card__image"
             src={previewImage}

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { ActionCreator } from '../../../store/action';
-import { SORT_TYPE } from '../../../const';
+import { SORT_TYPES } from '../../../const';
 import SortItem from '../sort/SortItem';
 
 function SortList({ sortType, onSort }) {
@@ -28,7 +28,7 @@ function SortList({ sortType, onSort }) {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}`}>
-        {Object.keys(SORT_TYPE).map((item) => (
+        {Object.keys(SORT_TYPES).map((item) => (
           <SortItem
             key={uuid()}
             type={item}

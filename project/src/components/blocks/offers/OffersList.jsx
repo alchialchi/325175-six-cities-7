@@ -2,23 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ActionCreator } from '../../../store/action';
-import { CardType } from '../../../const';
+import { CARD_TYPES } from '../../../const';
 
 import offerProp from './offer.prop';
 import OfferCard from './OfferCard';
 
 const getClassByType = (type) => {
   switch (type) {
-    case CardType.FAVORITES:
+    case CARD_TYPES.FAVORITES:
       return `${type}__places`;
-    case CardType.NEAR_PLACES:
+    case CARD_TYPES.NEAR_PLACES:
       return `${type}__list places__list`;
     default:
       return `${type}__places-list places__list tabs__content`;
   }
 };
 
-function OffersList({ offers, handleMouseEnter, type = CardType.CITIES }) {
+function OffersList({ offers, handleMouseEnter, type = CARD_TYPES.CITIES }) {
   return (
     <div className={getClassByType(type)}>
       {offers.map((offer) => (

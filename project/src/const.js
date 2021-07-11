@@ -1,4 +1,4 @@
-export const AppRoute = {
+export const APP_ROUTES = {
   ROOT: '/',
   SIGN_IN: '/login',
   FAVORITES: '/favorites',
@@ -68,7 +68,7 @@ export const CITIES = {
   },
 };
 
-export const SORT_TYPE = {
+export const SORT_TYPES = {
   DEFAULT: {
     name: 'default',
     text: 'Popular',
@@ -87,14 +87,14 @@ export const SORT_TYPE = {
   },
 };
 
-export const OfferType = {
+export const OFFER_TYPES = {
   apartment: 'Apartment',
   room: 'Private Room',
   house: 'House',
   hotel: 'Hotel',
 };
 
-export const CardType = {
+export const CARD_TYPES = {
   FAVORITES: 'favorites',
   CITIES: 'cities',
   NEAR_PLACES: 'near-places',
