@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import HiddenSvg from '../svg/HiddenSvg';
 import Header from '../blocks/header/Header';
@@ -18,8 +19,10 @@ import { CardType } from '../../const';
 const NEAR_OFFERS_MAX = 3;
 
 function Room(props) {
-  const { offers, reviews, filteredOffer, activeOffer } = props;
+  const { offers, reviews, activeOffer } = props;
   const nearOffers = offers.slice(0, NEAR_OFFERS_MAX);
+  const { id } = useParams();
+  const filteredOffer = offers.find((offer) => offer.id === id);
 
   const {
     isPremium,
@@ -168,7 +171,6 @@ function Room(props) {
 
 Room.propTypes = {
   offers: PropTypes.arrayOf(offersProp),
-  filteredOffer: offersProp,
   reviews: PropTypes.arrayOf(reviewsProp).isRequired,
   activeOffer: PropTypes.oneOfType([
     PropTypes.string,
@@ -178,6 +180,8 @@ Room.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  offers: state.offers,
+  reviews: state.reviews,
   activeOffer: state.activeOffer,
 });
 
