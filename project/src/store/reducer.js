@@ -1,5 +1,3 @@
-import offers from '../mocks/offers';
-import reviews from '../mocks/reviews';
 import { CITIES, SORT_TYPES } from '../const';
 import { ActionType } from './action';
 
