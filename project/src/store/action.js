@@ -2,6 +2,7 @@ export const ActionType = {
   ACTIVE_OFFER_ID: 'activeOffer',
   CHANGE_CITY: 'city/changeCity',
   SORT: 'sort/setSort',
+  LOAD_OFFERS: 'data/loadOffers',
 };
 
 export const ActionCreator = {
@@ -16,5 +17,9 @@ export const ActionCreator = {
   sort: (sortType) => ({
     type: ActionType.SORT,
     payload: sortType,
+  }),
+  loadOffers: (offers) => ({
+    type: ActionType.LOAD_OFFERS,
+    payload: offers,
   }),
 };

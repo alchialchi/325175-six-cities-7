@@ -6,7 +6,7 @@ import { APP_ROUTES } from '../../../const';
 import Logo from './Logo';
 
 export default function Header(props) {
-  const { loggedOut = false } = props;
+  const { loggedOut } = props;
 
   return (
     <header className="header">
@@ -41,7 +41,7 @@ export default function Header(props) {
                     </Link>
                   </li>
                   <li className="header__nav-item">
-                    <Link className="header__nav-link" to="/sign-out">
+                    <Link className="header__nav-link" to={APP_ROUTES.SIGN_IN}>
                       <span className="header__signout">Sign out</span>
                     </Link>
                   </li>

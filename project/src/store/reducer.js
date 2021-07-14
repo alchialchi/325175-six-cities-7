@@ -1,15 +1,15 @@
-import offers from '../mocks/offers';
-import reviews from '../mocks/reviews';
 import { CITIES, SORT_TYPES } from '../const';
 import { ActionType } from './action';
+import reviews from '../mocks/reviews';
 
 const initialState = {
-  offers: offers,
+  offers: [],
   reviews: reviews,
   cities: Object.values(CITIES),
   city: CITIES.PARIS.name,
   sortType: SORT_TYPES.DEFAULT,
   activeOffer: null,
+  isDataLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,6 +28,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         sortType: action.payload,
+      };
+    case ActionType.LOAD_OFFERS:
+      return {
+        ...state,
+        offers: action.payload,
+        isDataLoaded: true,
       };
     default:
       return state;

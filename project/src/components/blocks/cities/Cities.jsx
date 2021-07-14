@@ -4,10 +4,16 @@ import PropTypes from 'prop-types';
 import Map from '../map/Map';
 import OffersList from '../offers/OffersList';
 import SortList from '../sort/SortList';
+import NoCities from '../cities/NoCities';
 import offerProp from '../offers/offer.prop';
 import { CARD_TYPES, CITIES } from '../../../const';
 
 export default function Cities({ offers, city, activeOffer }) {
+
+  if (offers.length === 0 ) {
+    return <NoCities city={city} />;
+  }
+
   return (
     <div className="cities">
       <div className="cities__places-container container">
