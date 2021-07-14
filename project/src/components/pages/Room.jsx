@@ -8,6 +8,7 @@ import Header from '../blocks/header/Header';
 import ReviewsList from '../blocks/review/ReviewsList';
 import ReviewForm from '../blocks/review/ReviewForm';
 import OffersList from '../blocks/offers/OffersList';
+import Loading from '../blocks/loading/Loading';
 import Map from '../blocks/map/Map';
 
 import offersProp from '../blocks/offers/offer.prop';
@@ -19,10 +20,14 @@ import { CARD_TYPES } from '../../const';
 const NEAR_OFFERS_MAX = 3;
 
 function Room(props) {
-  const { offers, reviews, activeOffer } = props;
+  const { offers, reviews, activeOffer, isDataLoaded } = props;
   const nearOffers = offers.slice(0, NEAR_OFFERS_MAX);
   const { id } = useParams();
-  const filteredOffer = offers.find((offer) => offer.id === id);
+  const filteredOffer = offers.find((offer) => offer.id === Number(id));
+
+  if (!isDataLoaded) {
+    return <Loading />;
+  }
 
   const {
     isPremium,
@@ -44,7 +49,7 @@ function Room(props) {
     <React.Fragment>
       <HiddenSvg />
       <div className="page">
-        <Header loggedOut />
+        <Header loggedOut={false} />
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">
@@ -177,12 +182,14 @@ Room.propTypes = {
     PropTypes.number,
     PropTypes.shape({}),
   ]),
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
   reviews: state.reviews,
   activeOffer: state.activeOffer,
+  isDataLoaded: state.isDataLoaded,
 });
 
 export { Room };

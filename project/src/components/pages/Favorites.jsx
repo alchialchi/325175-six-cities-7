@@ -16,7 +16,7 @@ function Favorites(props) {
     <React.Fragment>
       <HiddenSvg />
       <div className="page">
-        <Header loggedOut />
+        <Header loggedOut={false} />
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">
             <section className="favorites">
@@ -44,7 +44,7 @@ Favorites.propTypes = {
 
 const mapStateToProps = (state) => ({
   city: state.city,
-  offers: state.offers.filter(({ isFavorite}) => isFavorite),
+  offers: state.offers.filter(({ isFavorite }) => isFavorite),
 });
 
 export default connect(mapStateToProps)(Favorites);
