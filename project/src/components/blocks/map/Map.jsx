@@ -19,8 +19,5 @@ export default function Map({ offers, city, activeOffer }) {
 Map.propTypes = {
   city: cityProp,
   offers: PropTypes.arrayOf(offerProp).isRequired,
-  activeOffer: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.shape({}),
-  ]),
+  activeOffer: PropTypes.number,
 };
