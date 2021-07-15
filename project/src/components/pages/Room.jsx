@@ -22,8 +22,8 @@ const NEAR_OFFERS_MAX = 3;
 function Room(props) {
   const { offers, reviews, activeOffer, isDataLoaded } = props;
   const nearOffers = offers.slice(0, NEAR_OFFERS_MAX);
-  const { id } = useParams();
-  const filteredOffer = offers.find((offer) => offer.id === Number(id));
+  const activeId = parseInt(useParams().id, 10);
+  const filteredOffer = offers.find((offer) => offer.id === activeId);
 
   if (!isDataLoaded) {
     return <Loading />;
