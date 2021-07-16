@@ -13,6 +13,7 @@ import { browserHistory } from '../../services/browser-history';
 import PrivateRoute from '../private-route/private-route';
 import Loading from '../blocks/loading/Loading';
 import { isCheckedAuth } from '../../store/api-action';
+
 function App(props) {
   const { authorizationStatus, isDataLoaded} = props;
 

@@ -40,7 +40,6 @@ export const logout = () => (dispatch, _getState, api) => {
     .then(() => {
       localStorage.removeItem('token');
       dispatch(ActionCreator.logout());
-      dispatch(ActionCreator.redirectToRoute(APP_ROUTES.ROOT));
     });
 };
 

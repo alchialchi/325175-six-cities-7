@@ -16,7 +16,7 @@ function Favorites(props) {
     <React.Fragment>
       <HiddenSvg />
       <div className="page">
-        <Header loggedOut={false} />
+        <Header />
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">
             <section className="favorites">

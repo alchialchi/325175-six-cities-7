@@ -1,5 +1,3 @@
-// import { adaptUserInfoToClient } from '../utils';
-
 export const ActionType = {
   ACTIVE_OFFER_ID: 'activeOffer',
   CHANGE_CITY: 'city/changeCity',
