@@ -10,7 +10,7 @@ import { CARD_TYPES, CITIES } from '../../../const';
 
 export default function Cities({ offers, city, activeOffer }) {
 
-  if (offers.length === 0 ) {
+  if (!offers.length) {
     return <NoCities city={city} />;
   }
 

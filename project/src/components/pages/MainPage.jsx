@@ -11,12 +11,11 @@ import HiddenSvg from '../svg/HiddenSvg';
 import { sortOffers } from '../../utils';
 
 function MainPage({ offers, city, activeOffer, isDataLoaded }) {
-
   return (
     <React.Fragment>
       <HiddenSvg />
       <div className="page page--gray page--main">
-        <Header loggedOut={false} />
+        <Header />
         <main className={`page__main page__main--index ${offers.length === 0 ? 'page__main--index-empty' : ''}`}>
           <h1 className="visually-hidden">Cities</h1>
           <LocationList />

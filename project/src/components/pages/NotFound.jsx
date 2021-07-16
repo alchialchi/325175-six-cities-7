@@ -7,7 +7,7 @@ import { APP_ROUTES } from '../../const';
 function NotFound() {
   return (
     <section className="page">
-      <Header loggedOut />
+      <Header />
       <section className="container">
         <h1>404. Page not found</h1>
         <Link to={APP_ROUTES.ROOT}>Вернуться на главную</Link>
