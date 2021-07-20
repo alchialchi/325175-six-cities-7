@@ -7,7 +7,7 @@ import { APP_ROUTES } from '../../const';
 import MainPage from '../pages/MainPage';
 import SignIn from '../pages/SignIn';
 import Favorites from '../pages/Favorites';
-import Room from '../pages/Room';
+import RoomPage from '../pages/Room/RoomPage';
 import NotFound from '../pages/NotFound';
 import { browserHistory } from '../../services/browser-history';
 import PrivateRoute from '../private-route/private-route';
@@ -15,9 +15,9 @@ import Loading from '../blocks/loading/Loading';
 import { isCheckedAuth } from '../../store/api-action';
 
 function App(props) {
-  const { authorizationStatus, isDataLoaded} = props;
+  const { authorizationStatus, isOffersListLoaded} = props;
 
-  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+  if (isCheckedAuth(authorizationStatus) || !isOffersListLoaded) {
     return (
       <Loading />
     );
@@ -38,9 +38,9 @@ function App(props) {
           render={() => <Favorites />}
         />
         <Route exact path={`${APP_ROUTES.OFFER}/:id`}>
-          <Room />
+          <RoomPage />
         </Route>
-        <Route>
+        <Route exact path={APP_ROUTES.NOT_FOUND}>
           <NotFound />
         </Route>
       </Switch>
@@ -50,12 +50,12 @@ function App(props) {
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
+  isOffersListLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: state.authorizationStatus,
-  isDataLoaded: state.isDataLoaded,
+  isOffersListLoaded: state.isOffersListLoaded,
 });
 
 export { App };
