@@ -1,15 +1,19 @@
 import { AuthorizationStatus, CITIES, SORT_TYPES } from '../const';
 import { ActionType } from './action';
-import reviews from '../mocks/reviews';
 
 const initialState = {
   offers: [],
-  reviews: reviews,
+  offer: null,
+  nearbyOffers: [],
+  comments: [],
   cities: Object.values(CITIES),
   city: CITIES.PARIS.name,
   sortType: SORT_TYPES.DEFAULT,
   activeOffer: null,
-  isDataLoaded: false,
+  isOffersListLoaded: false,
+  isOfferLoaded: false,
+  isNearbyOffersLoaded: false,
+  isReviewsLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   user: null,
 };
@@ -35,7 +39,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         offers: action.payload,
-        isDataLoaded: true,
+        isOffersListLoaded: true,
+      };
+    case ActionType.LOAD_OFFER:
+      return {
+        ...state,
+        offer: action.payload,
+        isOfferLoaded: true,
+      };
+    case ActionType.LOAD_NEARBY:
+      return {
+        ...state,
+        nearbyOffers: action.payload,
+        isNearbyOffersLoaded: true,
+      };
+    case ActionType.LOAD_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload,
+        isReviewsLoaded: true,
       };
     case ActionType.REQUIRE_AUTH:
       return {
