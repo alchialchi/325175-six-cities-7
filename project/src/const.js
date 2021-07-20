@@ -3,6 +3,7 @@ export const APP_ROUTES = {
   SIGN_IN: '/login',
   FAVORITES: '/favorites',
   OFFER: '/offer',
+  NOT_FOUND: '/not-found',
 };
 
 export const MAX_RATING = 5;
