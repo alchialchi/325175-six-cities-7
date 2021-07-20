@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 
+import { createComment } from '../../../store/api-action';
 import RatingList from '../rating/RatingList';
 
-export default function ReviewForm() {
+function ReviewForm({ id, sendComment }) {
   const [review, setReview] = useState({
     comment: '',
     rating: '',
   });
 
-  const { comment } = review;
+  const { comment, rating } = review;
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    sendComment(id, {
+      comment: comment,
+      rating: rating,
+    });
+    setReview(review);
+  };
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={(e) => e.preventDefault()}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={onSubmitHandler}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
-      <RatingList onChange={(e) => setReview({ ...review, rating: e.target.value })}/>
+      <RatingList rating={rating} onChange={(e) => setReview({ ...review, rating: e.target.value })}/>
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
@@ -41,3 +53,16 @@ export default function ReviewForm() {
     </form>
   );
 }
+
+ReviewForm.propTypes = {
+  id: PropTypes.number,
+  sendComment: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  sendComment(...data) {
+    dispatch(createComment(...data));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(ReviewForm);

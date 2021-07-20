@@ -3,7 +3,7 @@ import { getRatingInPercent } from '../../../utils';
 import reviewProp from './review.prop';
 
 export default function Review({ review }) {
-  const { user, rating, date, text } = review;
+  const { user, rating, date, comment } = review;
   const { avatarUrl, name } = user;
 
   const formatDate = new Intl.DateTimeFormat('en-Us', {
@@ -33,7 +33,7 @@ export default function Review({ review }) {
           </div>
         </div>
         <p className="reviews__text">
-          {text}
+          {comment}
         </p>
         <time className="reviews__time" dateTime="2019-04-24">
           {formatDate}
