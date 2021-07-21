@@ -3,6 +3,9 @@ export const ActionType = {
   CHANGE_CITY: 'city/changeCity',
   SORT: 'sort/setSort',
   LOAD_OFFERS: 'data/loadOffers',
+  LOAD_OFFER: 'data/loadOffer',
+  LOAD_REVIEWS: 'data/loadReviews',
+  LOAD_NEARBY: 'data/loadNearby',
   REQUIRE_AUTH: 'user/reduireAuth',
   LOG_OUT: 'user/logout',
   REDIRECT_TO_ROUTE: 'redirectToRoute',
@@ -25,6 +28,18 @@ export const ActionCreator = {
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: offers,
+  }),
+  loadOffer: (payload) => ({
+    type: ActionType.LOAD_OFFER,
+    payload,
+  }),
+  loadReviews: (payload) => ({
+    type: ActionType.LOAD_REVIEWS,
+    payload,
+  }),
+  loadNearby: (payload) => ({
+    type: ActionType.LOAD_NEARBY,
+    payload,
   }),
   requireAuth: (status) => ({
     type: ActionType.REQUIRE_AUTH,

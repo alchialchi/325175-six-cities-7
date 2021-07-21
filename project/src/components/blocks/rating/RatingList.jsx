@@ -2,24 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { RATINGS } from '../../../const';
-
-export default function RatingList({ onChange }) {
+export default function RatingList({ onChange, rating }) {
   return (
     <div className="reviews__rating-form form__rating">
-      {Object.keys(RATINGS).reverse().map((key, i) => (
-        <React.Fragment key={key + i.toString()}>
+      {Object.keys(RATINGS).sort((a, b) => b - a).map((value, i) => (
+        <React.Fragment key={value + i.toString()}>
           <input
             className="form__rating-input visually-hidden"
             name="rating"
-            value={RATINGS[key]}
-            id={`${key}-stars`}
+            value={value}
+            id={`${value}-stars`}
             type="radio"
             onChange={onChange}
+            checked={rating === value}
           />
           <label
-            htmlFor={`${key}-stars`}
+            htmlFor={`${value}-stars`}
             className="reviews__rating-label form__rating-label"
-            title={RATINGS[key]}
+            title={RATINGS[value]}
           >
             <svg className="form__star-image" width="37" height="33">
               <use xlinkHref="#icon-star" />
@@ -32,4 +32,5 @@ export default function RatingList({ onChange }) {
 
 RatingList.propTypes = {
   onChange: PropTypes.func.isRequired,
+  rating: PropTypes.string.isRequired,
 };

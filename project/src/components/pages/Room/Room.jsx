@@ -1,33 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-import HiddenSvg from '../svg/HiddenSvg';
-import Header from '../blocks/header/Header';
-import ReviewsList from '../blocks/review/ReviewsList';
-import ReviewForm from '../blocks/review/ReviewForm';
-import OffersList from '../blocks/offers/OffersList';
-import Loading from '../blocks/loading/Loading';
-import Map from '../blocks/map/Map';
+import HiddenSvg from '../../svg/HiddenSvg';
+import Header from '../../blocks/header/Header';
+import ReviewsList from '../../blocks/review/ReviewsList';
+import ReviewForm from '../../blocks/review/ReviewForm';
+import OffersList from '../../blocks/offers/OffersList';
+import Map from '../../blocks/map/Map';
 
-import offersProp from '../blocks/offers/offer.prop';
-import reviewsProp from '../blocks/review/review.prop';
+import offerProp from '../../blocks/offers/offer.prop';
+import reviewsProp from '../../blocks/review/review.prop';
 
-import { getRatingInPercent } from '../../utils';
-import { AuthorizationStatus, CARD_TYPES } from '../../const';
-
-const NEAR_OFFERS_MAX = 3;
+import { getRatingInPercent } from '../../../utils';
+import { AuthorizationStatus, CARD_TYPES } from '../../../const';
 
 function Room(props) {
-  const { offers, reviews, activeOffer, isDataLoaded, authorizationStatus } = props;
-  const nearOffers = offers.slice(0, NEAR_OFFERS_MAX);
-  const activeId = parseInt(useParams().id, 10);
-  const filteredOffer = offers.find((offer) => offer.id === activeId);
-
-  if (!isDataLoaded) {
-    return <Loading />;
-  }
+  const {
+    offer,
+    reviews,
+    activeOffer,
+    nearbyOffers,
+    authorizationStatus,
+  } = props;
 
   const {
     isPremium,
@@ -43,7 +38,8 @@ function Room(props) {
     host,
     description,
     city,
-  } = filteredOffer;
+    id,
+  } = offer;
 
   return (
     <React.Fragment>
@@ -150,12 +146,12 @@ function Room(props) {
                     Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
                   </h2>
                   <ReviewsList reviews={reviews} />
-                  {authorizationStatus === AuthorizationStatus.AUTH && <ReviewForm />}
+                  {authorizationStatus === AuthorizationStatus.AUTH && <ReviewForm id={id} />}
                 </section>
               </div>
             </div>
             <section className="property__map map">
-              <Map offers={offers} city={city} activeOffer={activeOffer} />
+              <Map offers={nearbyOffers} city={city} activeOffer={activeOffer} />
             </section>
           </section>
           <div className="container">
@@ -164,7 +160,7 @@ function Room(props) {
                 Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
-                <OffersList offers={nearOffers} type={CARD_TYPES.NEAR_PLACES}/>
+                <OffersList offers={nearbyOffers} type={CARD_TYPES.NEAR_PLACES}/>
               </div>
             </section>
           </div>
@@ -175,22 +171,19 @@ function Room(props) {
 }
 
 Room.propTypes = {
-  offers: PropTypes.arrayOf(offersProp),
+  ...offerProp,
+  offer: PropTypes.shape(offerProp).isRequired,
   reviews: PropTypes.arrayOf(reviewsProp).isRequired,
   activeOffer: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.shape({}),
   ]),
-  isDataLoaded: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  reviews: state.reviews,
   activeOffer: state.activeOffer,
-  isDataLoaded: state.isDataLoaded,
   authorizationStatus: state.authorizationStatus,
 });
 

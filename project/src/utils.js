@@ -16,7 +16,7 @@ export const sortOffers = (offers, type, city) => {
   }
 };
 
-export const adaptOfferToClient = (data) => data.map((offer) => {
+export const adaptOfferToClient = (offer) => {
   const adaptedOffer = {
     ...offer,
     isFavorite: offer.is_favorite,
@@ -37,4 +37,18 @@ export const adaptOfferToClient = (data) => data.map((offer) => {
   delete adaptedOffer.preview_image;
 
   return adaptedOffer;
-});
+};
+
+export const adaptReviewToClient = (review) => {
+  const adaptedReview = {
+    ...review,
+    user: {
+      avatarUrl: review.user.avatar_url,
+      id: review.user.id,
+      isPro: review.user.is_pro,
+      name: review.user.name,
+    },
+  };
+
+  return adaptedReview;
+};
