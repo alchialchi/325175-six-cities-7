@@ -182,9 +182,9 @@ Room.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  activeOffer: state.activeOffer,
-  authorizationStatus: state.authorizationStatus,
+const mapStateToProps = ({ USER }) => ({
+  activeOffer: USER.activeOffer,
+  authorizationStatus: USER.authorizationStatus,
 });
 
 export { Room };

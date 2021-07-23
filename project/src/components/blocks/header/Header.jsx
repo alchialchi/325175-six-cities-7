@@ -34,8 +34,8 @@ Header.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  isAuthorized: state.authorizationStatus === AuthorizationStatus.AUTH,
+const mapStateToProps = ({ USER }) => ({
+  isAuthorized: USER.authorizationStatus === AuthorizationStatus.AUTH,
 });
 
 export { Header };

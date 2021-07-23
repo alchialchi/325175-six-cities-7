@@ -42,9 +42,9 @@ Favorites.propTypes = {
   offers: PropTypes.arrayOf(offersProp),
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: state.offers.filter(({ isFavorite }) => isFavorite),
+const mapStateToProps = ({ PROCESS, DATA }) => ({
+  city: PROCESS.city,
+  offers: DATA.offers.filter(({ isFavorite }) => isFavorite),
 });
 
 export default connect(mapStateToProps)(Favorites);

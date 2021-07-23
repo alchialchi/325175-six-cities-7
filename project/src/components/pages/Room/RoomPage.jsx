@@ -51,13 +51,13 @@ RoomPage.propTypes = {
   isReviewsLoaded: PropTypes.bool,
 };
 
-const mapStateToProps = (state) => ({
-  offer: state.offer,
-  reviews: state.reviews,
-  nearbyOffers: state.nearbyOffers,
-  isNearbyOffersLoaded: state.isNearbyOffersLoaded,
-  isOfferLoaded: state.isOfferLoaded,
-  isReviewsLoaded: state.isReviewsLoaded,
+const mapStateToProps = ({ DATA }) => ({
+  offer: DATA.offer,
+  reviews: DATA.reviews,
+  nearbyOffers: DATA.nearbyOffers,
+  isNearbyOffersLoaded: DATA.isNearbyOffersLoaded,
+  isOfferLoaded: DATA.isOfferLoaded,
+  isReviewsLoaded: DATA.isReviewsLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

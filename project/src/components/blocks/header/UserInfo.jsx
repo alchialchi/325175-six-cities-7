@@ -25,8 +25,8 @@ UserInfo.propTypes = {
   email: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  email: state.user.email,
+const mapStateToProps = ({ USER }) => ({
+  email: USER.user.email,
 });
 
 export { UserInfo };

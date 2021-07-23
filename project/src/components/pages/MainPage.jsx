@@ -39,11 +39,11 @@ MainPage.propTypes = {
   isOffersListLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: sortOffers(state.offers, state.sortType.name, state.city),
-  activeOffer: state.activeOffer,
-  isOffersListLoaded: state.isOffersListLoaded,
+const mapStateToProps = ({ PROCESS, DATA }) => ({
+  city: PROCESS.city,
+  offers: sortOffers(DATA.offers, PROCESS.sortType.name, PROCESS.city),
+  activeOffer: PROCESS.activeOffer,
+  isOffersListLoaded: DATA.isOffersListLoaded,
 });
 
 export { MainPage };

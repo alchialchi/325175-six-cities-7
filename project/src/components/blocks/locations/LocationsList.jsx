@@ -27,9 +27,9 @@ LocationList.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  cities: state.cities,
+const mapStateToProps = ({ PROCESS }) => ({
+  city: PROCESS.city,
+  cities: PROCESS.cities,
 });
 
 const mapDispatchToProps = (dispatch) => ({

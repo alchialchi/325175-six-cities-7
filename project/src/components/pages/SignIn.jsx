@@ -82,9 +82,9 @@ SignIn.propTypes = {
   redirectToRoot: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  isAuthorized: state.authorizationStatus === AuthorizationStatus.AUTH,
+const mapStateToProps = ({ PROCESS, USER }) => ({
+  city: PROCESS.city,
+  isAuthorized: USER.authorizationStatus === AuthorizationStatus.AUTH,
 });
 
 const mapDispatchToProps = (dispatch) => ({
