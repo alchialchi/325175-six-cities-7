@@ -9,6 +9,8 @@ import Loading from '../blocks/loading/Loading';
 import offersProp from '../blocks/offers/offer.prop';
 import HiddenSvg from '../svg/HiddenSvg';
 import { sortOffers } from '../../utils';
+import { getActiveOffer, getCity, getSortType } from '../../store/work-process/selectors';
+import { getIsOffersDataLoaded, getOffers } from '../../store/data/selectors';
 
 function MainPage({ offers, city, activeOffer, isOffersListLoaded }) {
   return (
@@ -39,11 +41,11 @@ MainPage.propTypes = {
   isOffersListLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({ PROCESS, DATA }) => ({
-  city: PROCESS.city,
-  offers: sortOffers(DATA.offers, PROCESS.sortType.name, PROCESS.city),
-  activeOffer: PROCESS.activeOffer,
-  isOffersListLoaded: DATA.isOffersListLoaded,
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  offers: sortOffers(getOffers(state), getSortType(state).name, getCity(state)),
+  activeOffer: getActiveOffer(state),
+  isOffersListLoaded: getIsOffersDataLoaded(state),
 });
 
 export { MainPage };

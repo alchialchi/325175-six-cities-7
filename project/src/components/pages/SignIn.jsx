@@ -8,6 +8,8 @@ import Header from '../blocks/header/Header';
 import HiddenSvg from '../svg/HiddenSvg';
 import { APP_ROUTES, AuthorizationStatus } from '../../const';
 import { redirectToRoute } from '../../store/action';
+import { getCity } from '../../store/work-process/selectors';
+import { getAuthorizationStatus } from '../../store/user/selectors';
 
 function SignIn({ city, onSubmit, isAuthorized, redirectToRoot }) {
 
@@ -82,9 +84,9 @@ SignIn.propTypes = {
   redirectToRoot: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ PROCESS, USER }) => ({
-  city: PROCESS.city,
-  isAuthorized: USER.authorizationStatus === AuthorizationStatus.AUTH,
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  isAuthorized: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
 });
 
 const mapDispatchToProps = (dispatch) => ({

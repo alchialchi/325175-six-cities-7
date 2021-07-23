@@ -14,6 +14,8 @@ import reviewsProp from '../../blocks/review/review.prop';
 
 import { getRatingInPercent } from '../../../utils';
 import { AuthorizationStatus, CARD_TYPES } from '../../../const';
+import { getActiveOffer } from '../../../store/work-process/selectors';
+import { getAuthorizationStatus } from '../../../store/user/selectors';
 
 function Room(props) {
   const {
@@ -182,9 +184,9 @@ Room.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ USER }) => ({
-  activeOffer: USER.activeOffer,
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state) => ({
+  activeOffer: getActiveOffer(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export { Room };

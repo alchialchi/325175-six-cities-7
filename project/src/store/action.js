@@ -1,3 +1,5 @@
+import { createAction } from '@reduxjs/toolkit';
+
 export const ActionType = {
   ACTIVE_OFFER_ID: 'activeOffer',
   CHANGE_CITY: 'city/changeCity',
@@ -6,62 +8,60 @@ export const ActionType = {
   LOAD_OFFER: 'data/loadOffer',
   LOAD_REVIEWS: 'data/loadReviews',
   LOAD_NEARBY: 'data/loadNearby',
+  LOAD_FAVORITES: 'data/favorites',
   REQUIRE_AUTH: 'user/reduireAuth',
   LOG_OUT: 'user/logout',
   REDIRECT_TO_ROUTE: 'redirectToRoute',
-  SET_USER: 'user',
+  LOAD_USER_INFO: 'user/loadUserInfo',
+  UPDATE_DATA: 'data/updateData',
 };
 
-export const changeCity = (city) => ({
-  type: ActionType.CHANGE_CITY,
+export const changeCity = createAction(ActionType.CHANGE_CITY, (city) => ({
   payload: city,
-});
+}));
 
-export const setActiveOfferId = (id) => ({
-  type: ActionType.ACTIVE_OFFER_ID,
+export const setActiveOfferId = createAction(ActionType.ACTIVE_OFFER_ID, (id) => ({
   payload: id,
-});
+}));
 
-export const sort = (sortType) => ({
-  type: ActionType.SORT,
+export const sort = createAction(ActionType.SORT, (sortType) => ({
   payload: sortType,
-});
+}));
 
-export const loadOffers = (offers) => ({
-  type: ActionType.LOAD_OFFERS,
+export const loadOffers = createAction(ActionType.LOAD_OFFERS, (offers) => ({
   payload: offers,
-});
+}));
 
-export const loadOffer = (payload) => ({
-  type: ActionType.LOAD_OFFER,
+export const loadOffer = createAction(ActionType.LOAD_OFFER, (payload) => ({
   payload,
-});
+}));
 
-export const loadReviews = (payload) => ({
-  type: ActionType.LOAD_REVIEWS,
+export const loadReviews = createAction(ActionType.LOAD_REVIEWS, (payload) => ({
   payload,
-});
+}));
 
-export const loadNearby = (payload) => ({
-  type: ActionType.LOAD_NEARBY,
+export const loadNearby =  createAction(ActionType.LOAD_NEARBY, (payload) => ({
   payload,
-});
+}));
 
-export const requireAuth = (status) => ({
-  type: ActionType.REQUIRE_AUTH,
+export const requireAuth = createAction(ActionType.REQUIRE_AUTH, (status) => ({
   payload: status,
-});
+}));
 
-export const logout = () => ({
-  type: ActionType.LOG_OUT,
-});
+export const logout = createAction(ActionType.LOG_OUT);
 
-export const redirectToRoute = (url) => ({
-  type: ActionType.REDIRECT_TO_ROUTE,
+export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({
   payload: url,
-});
+}));
 
-export const setUser = (payload) => ({
-  type: ActionType.SET_USER,
+export const loadUserInfo = createAction(ActionType.LOAD_USER_INFO, (payload) => ({
   payload,
-});
+}));
+
+export const loadFavorites = createAction(ActionType.LOAD_FAVORITES, (payload) => ({
+  payload,
+}));
+
+export const updateData = createAction(ActionType.UPDATE_DATA, (payload) => ({
+  payload,
+}));

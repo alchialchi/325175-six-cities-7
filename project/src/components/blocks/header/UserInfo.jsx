@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { APP_ROUTES } from '../../../const';
 import { connect } from 'react-redux';
+import { getUser } from '../../../store/user/selectors';
 
 function UserInfo({ email }) {
   return (
@@ -25,8 +26,8 @@ UserInfo.propTypes = {
   email: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ USER }) => ({
-  email: USER.user.email,
+const mapStateToProps = (state) => ({
+  email: getUser(state).email,
 });
 
 export { UserInfo };

@@ -13,6 +13,8 @@ import { browserHistory } from '../../services/browser-history';
 import PrivateRoute from '../private-route/private-route';
 import Loading from '../blocks/loading/Loading';
 import { isCheckedAuth } from '../../store/api-action';
+import { getAuthorizationStatus } from '../../store/user/selectors';
+import { getIsOffersDataLoaded } from '../../store/data/selectors';
 
 function App(props) {
   const { authorizationStatus, isOffersListLoaded} = props;
@@ -53,9 +55,9 @@ App.propTypes = {
   isOffersListLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({ USER, DATA }) => ({
-  authorizationStatus: USER.authorizationStatus,
-  isOffersListLoaded: DATA.isOffersListLoaded,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  isOffersListLoaded: getIsOffersDataLoaded(state),
 });
 
 export { App };

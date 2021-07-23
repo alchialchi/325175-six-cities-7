@@ -1,4 +1,4 @@
-import { loadOffers, loadOffer, loadReviews, loadNearby, redirectToRoute, setUser, requireAuth } from './action';
+import { loadOffers, loadOffer, loadReviews, loadNearby, redirectToRoute, loadUserInfo, requireAuth } from './action';
 import { adaptOfferToClient, adaptReviewToClient } from '../utils';
 import { APP_ROUTES, AuthorizationStatus } from '../const';
 
@@ -24,7 +24,7 @@ export const fetchOffer = (id) => (dispatch, _getState, api) => (
     .catch(() => dispatch(redirectToRoute(APP_ROUTES.NOT_FOUND)))
 );
 
-export const getNearbyOffers = (id) => (dispatch, _getState, api) => (
+export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
   api.get(`${API_ROUTES.HOTELS}/${id}/nearby`)
     .then(({data}) => {
       dispatch(loadNearby(
@@ -37,13 +37,13 @@ export const getNearbyOffers = (id) => (dispatch, _getState, api) => (
 export const checkAuth = () => (dispatch, _getState, api) => {
   api.get(API_ROUTES.LOGIN)
     .then(({data}) => {
-      dispatch(setUser(data));
+      dispatch(loadUserInfo(data));
       dispatch(requireAuth(AuthorizationStatus.AUTH));
     })
     .catch(() => {});
 };
 
-export const getReviews = (id) => (dispatch, _getState, api) => (
+export const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(`${API_ROUTES.COMMENTS}/${id}`)
     .then(({ data }) => {
       dispatch(loadReviews(
@@ -67,7 +67,7 @@ export const login = ({ login: email, password }) => (dispatch, _getState, api) 
   api.post(API_ROUTES.LOGIN, { email, password })
     .then(({ data }) => {
       localStorage.setItem('token', data.token);
-      dispatch(setUser(data));
+      dispatch(loadUserInfo(data));
       dispatch(requireAuth(AuthorizationStatus.AUTH));
       dispatch(redirectToRoute(APP_ROUTES.ROOT));
     });

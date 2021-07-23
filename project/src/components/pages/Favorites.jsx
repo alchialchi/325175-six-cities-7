@@ -8,6 +8,8 @@ import Header from '../blocks/header/Header';
 import FavoriteItems from '../blocks/favorites/FavoriteItems';
 import offersProp from '../blocks/offers/offer.prop';
 import { APP_ROUTES } from '../../const';
+import { getCity } from '../../store/work-process/selectors';
+import { getOffers } from '../../store/data/selectors';
 
 function Favorites(props) {
   const { offers, city } = props;
@@ -42,9 +44,9 @@ Favorites.propTypes = {
   offers: PropTypes.arrayOf(offersProp),
 };
 
-const mapStateToProps = ({ PROCESS, DATA }) => ({
-  city: PROCESS.city,
-  offers: DATA.offers.filter(({ isFavorite }) => isFavorite),
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  offers: getOffers(state).offers.filter(({ isFavorite }) => isFavorite),
 });
 
 export default connect(mapStateToProps)(Favorites);

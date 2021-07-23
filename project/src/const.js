@@ -106,3 +106,9 @@ export const AuthorizationStatus = {
   NO_AUTH: 'NO_AUTH',
   UNKNOWN: 'UNKNOWN',
 };
+
+export const NameSpace = {
+  DATA: 'DATA',
+  PROCESS: 'PROCESS',
+  USER: 'USER',
+};

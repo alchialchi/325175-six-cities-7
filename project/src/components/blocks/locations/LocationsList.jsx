@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { changeCity } from '../../../store/action';
 import cityProp from '../cities/city.prop';
 import LocationItem from './LocationItem';
+import { getCities, getCity } from '../../../store/work-process/selectors';
 
 function LocationList({ cities, city, onClick }) {
   return (
@@ -27,9 +28,9 @@ LocationList.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ PROCESS }) => ({
-  city: PROCESS.city,
-  cities: PROCESS.cities,
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  cities: getCities(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

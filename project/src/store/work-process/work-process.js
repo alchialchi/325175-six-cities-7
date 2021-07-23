@@ -1,5 +1,6 @@
-import { ActionType } from '../action';
+import { createReducer } from '@reduxjs/toolkit';
 import { CITIES, SORT_TYPES } from '../../const';
+import { changeCity, setActiveOfferId, sort } from '../action';
 
 const initialState = {
   cities: Object.values(CITIES),
@@ -8,26 +9,17 @@ const initialState = {
   activeOffer: null,
 };
 
-const workProcess = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.CHANGE_CITY:
-      return {
-        ...state,
-        city: action.payload,
-      };
-    case ActionType.ACTIVE_OFFER_ID:
-      return {
-        ...state,
-        activeOffer: action.payload,
-      };
-    case ActionType.SORT:
-      return {
-        ...state,
-        sortType: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const workProcess = createReducer(initialState, (builder) => {
+  builder
+    .addCase(changeCity, (state, action) => {
+      state.city = action.payload;
+    })
+    .addCase(sort, (state, action) => {
+      state.sortType = action.payload;
+    })
+    .addCase(setActiveOfferId, (state, action) => {
+      state.activeOffer = action.payload;
+    });
+});
 
 export { workProcess };

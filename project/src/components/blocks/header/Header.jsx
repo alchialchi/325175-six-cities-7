@@ -7,6 +7,7 @@ import Logo from './Logo';
 import UserInfo from './UserInfo';
 import LogoutLink from './LogoutLink';
 import LoginLink from './LoginLink';
+import { getAuthorizationStatus } from '../../../store/user/selectors';
 
 function Header({ isAuthorized }) {
   return (
@@ -34,8 +35,8 @@ Header.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({ USER }) => ({
-  isAuthorized: USER.authorizationStatus === AuthorizationStatus.AUTH,
+const mapStateToProps = (state) => ({
+  isAuthorized: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
 });
 
 export { Header };

@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchOffer, getNearbyOffers, getReviews } from '../../../store/api-action';
+import { fetchOffer, fetchNearbyOffers, fetchReviews } from '../../../store/api-action';
 import { useParams } from 'react-router-dom';
 
 import reviewProp from '../../blocks/review/review.prop';
 import offerProp from '../../blocks/offers/offer.prop';
 import Loading from '../../blocks/loading/Loading';
 import Room from './Room';
+import { getIsNearbyOffersDataLoaded, getIsOfferDataLoaded, getIsReviewsDataLoaded, getOffer, getNearbyOffers, getReviews } from '../../../store/data/selectors';
 
 function RoomPage(props) {
   const {
@@ -51,13 +52,13 @@ RoomPage.propTypes = {
   isReviewsLoaded: PropTypes.bool,
 };
 
-const mapStateToProps = ({ DATA }) => ({
-  offer: DATA.offer,
-  reviews: DATA.reviews,
-  nearbyOffers: DATA.nearbyOffers,
-  isNearbyOffersLoaded: DATA.isNearbyOffersLoaded,
-  isOfferLoaded: DATA.isOfferLoaded,
-  isReviewsLoaded: DATA.isReviewsLoaded,
+const mapStateToProps = (state) => ({
+  offer: getOffer(state),
+  reviews: getReviews(state),
+  nearbyOffers: getNearbyOffers(state),
+  isNearByOffersLoaded: getIsNearbyOffersDataLoaded(state),
+  isOfferLoaded: getIsOfferDataLoaded(state),
+  isReviewsLoaded: getIsReviewsDataLoaded(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -65,10 +66,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchOffer(id));
   },
   getNearbyData(id) {
-    dispatch(getNearbyOffers(id));
+    dispatch(fetchNearbyOffers(id));
   },
   getReviewsData(id) {
-    dispatch(getReviews(id));
+    dispatch(fetchReviews(id));
   },
 });
 

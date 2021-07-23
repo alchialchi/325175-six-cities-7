@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { sort } from '../../../store/action';
 import { SORT_TYPES } from '../../../const';
 import SortItem from '../sort/SortItem';
+import { getSortType } from '../../../store/work-process/selectors';
 
 function SortList({ sortType, onSort }) {
   const [isOpened, setIsOpened] = useState(false);
@@ -49,8 +50,8 @@ SortList.propTypes = {
   }),
 };
 
-const mapStateToProps = ({ PROCESS }) => ({
-  sortType: PROCESS.sortType,
+const mapStateToProps = (state) => ({
+  sortType: getSortType(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
