@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import offersProp from '../offers/offer.prop';
 import FavoriteCard from './FavoriteCard';
+import { getCity } from '../../../store/work-process/selectors';
 
 export default function FavoriteItems(props) {
-  const { offers, city } = props;
+  const { offers } = props;
+  const city = useSelector(getCity);
 
   return (
     <li className="favorites__locations-items">
@@ -25,5 +28,4 @@ export default function FavoriteItems(props) {
 
 FavoriteItems.propTypes = {
   offers: PropTypes.arrayOf(offersProp),
-  city: PropTypes.string.isRequired,
 };

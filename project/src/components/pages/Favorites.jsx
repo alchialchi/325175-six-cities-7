@@ -1,18 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import HiddenSvg from '../svg/HiddenSvg';
 import Header from '../blocks/header/Header';
 import FavoriteItems from '../blocks/favorites/FavoriteItems';
-import offersProp from '../blocks/offers/offer.prop';
-import { APP_ROUTES } from '../../const';
-import { getCity } from '../../store/work-process/selectors';
-import { getOffers } from '../../store/data/selectors';
 
-function Favorites(props) {
-  const { offers, city } = props;
+import { APP_ROUTES } from '../../const';
+import { getFavorites } from '../../store/data/selectors';
+import { fetchFavorites } from '../../store/api-action';
+import FavoritesEmpty from '../blocks/favorites/FavoritesEmpty';
+
+function Favorites() {
+  const dispatch = useDispatch();
+  const offers = useSelector(getFavorites);
+
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
 
   return (
     <React.Fragment>
@@ -21,12 +26,16 @@ function Favorites(props) {
         <Header />
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">
-            <section className="favorites">
-              <h1 className="favorites__title">Saved listing</h1>
-              <ul className="favorites__list">
-                <FavoriteItems offers={offers} city={city} />
-              </ul>
-            </section>
+            {!offers.length
+              ? <FavoritesEmpty />
+              : (
+                <section className="favorites">
+                  <h1 className="favorites__title">Saved listing</h1>
+                  <ul className="favorites__list">
+                    <FavoriteItems offers={offers} />
+                  </ul>
+                </section>
+              )}
           </div>
         </main>
         <footer className="footer container">
@@ -39,14 +48,4 @@ function Favorites(props) {
   );
 }
 
-Favorites.propTypes = {
-  city: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(offersProp),
-};
-
-const mapStateToProps = (state) => ({
-  city: getCity(state),
-  offers: getOffers(state).offers.filter(({ isFavorite }) => isFavorite),
-});
-
-export default connect(mapStateToProps)(Favorites);
+export default Favorites;

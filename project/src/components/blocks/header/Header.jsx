@@ -1,15 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { AuthorizationStatus } from '../../../const';
 import Logo from './Logo';
 import UserInfo from './UserInfo';
 import LogoutLink from './LogoutLink';
 import LoginLink from './LoginLink';
-import { getAuthorizationStatus } from '../../../store/user/selectors';
+import { getAuthorizationStatus, getUser } from '../../../store/user/selectors';
 
-function Header({ isAuthorized }) {
+function Header() {
+  const userEmail = useSelector(getUser).email;
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+
   return (
     <header className="header">
       <div className="container">
@@ -19,7 +22,7 @@ function Header({ isAuthorized }) {
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
-              {isAuthorized && <UserInfo />}
+              {isAuthorized && <UserInfo userEmail={userEmail} />}
               <li className="header__nav-item">
                 {isAuthorized ? <LogoutLink /> : <LoginLink />}
               </li>
@@ -31,14 +34,4 @@ function Header({ isAuthorized }) {
   );
 }
 
-Header.propTypes = {
-  isAuthorized: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  isAuthorized: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
-});
-
-export { Header };
-export default connect(mapStateToProps)(Header);
-
+export default React.memo(Header);

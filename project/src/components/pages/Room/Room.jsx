@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import HiddenSvg from '../../svg/HiddenSvg';
 import Header from '../../blocks/header/Header';
@@ -14,16 +14,14 @@ import reviewsProp from '../../blocks/review/review.prop';
 
 import { getRatingInPercent } from '../../../utils';
 import { AuthorizationStatus, CARD_TYPES } from '../../../const';
-import { getActiveOffer } from '../../../store/work-process/selectors';
 import { getAuthorizationStatus } from '../../../store/user/selectors';
+import { sendFavorite } from '../../../store/api-action';
 
 function Room(props) {
   const {
     offer,
     reviews,
-    activeOffer,
     nearbyOffers,
-    authorizationStatus,
   } = props;
 
   const {
@@ -42,6 +40,11 @@ function Room(props) {
     city,
     id,
   } = offer;
+
+  const dispatch = useDispatch();
+  const status = isFavorite ? '0' : '1';
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <React.Fragment>
@@ -74,11 +77,12 @@ function Room(props) {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button className={
-                    isFavorite
-                      ? 'property__bookmark-button property__bookmark-button--active button'
-                      : 'property__bookmark-button button'
-                  } type="button"
+                  <button
+                    className={`${isFavorite ? 'property__bookmark-button--active' : ''} property__bookmark-button button`}
+                    type="button"
+                    onClick={() => {
+                      dispatch(sendFavorite(id, status, true));
+                    }}
                   >
                     <svg
                       className="property__bookmark-icon"
@@ -148,12 +152,12 @@ function Room(props) {
                     Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
                   </h2>
                   <ReviewsList reviews={reviews} />
-                  {authorizationStatus === AuthorizationStatus.AUTH && <ReviewForm id={id} />}
+                  {isAuthorized && <ReviewForm id={id} />}
                 </section>
               </div>
             </div>
             <section className="property__map map">
-              <Map offers={nearbyOffers} city={city} activeOffer={activeOffer} />
+              <Map offers={nearbyOffers} city={city} activeOffer={offer} />
             </section>
           </section>
           <div className="container">
@@ -176,18 +180,6 @@ Room.propTypes = {
   ...offerProp,
   offer: PropTypes.shape(offerProp).isRequired,
   reviews: PropTypes.arrayOf(reviewsProp).isRequired,
-  activeOffer: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.shape({}),
-  ]),
-  authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  activeOffer: getActiveOffer(state),
-  authorizationStatus: getAuthorizationStatus(state),
-});
-
-export { Room };
-export default connect(mapStateToProps)(Room);
+export default React.memo(Room);
