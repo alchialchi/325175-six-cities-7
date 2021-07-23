@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ActionCreator } from '../../../store/action';
+import { setActiveOfferId } from '../../../store/action';
 import { CARD_TYPES } from '../../../const';
 
 import offerProp from './offer.prop';
@@ -41,7 +41,7 @@ OffersList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   handleMouseEnter(offerId) {
-    dispatch(ActionCreator.setActiveOfferId(offerId));
+    dispatch(setActiveOfferId(offerId));
   },
 });
 

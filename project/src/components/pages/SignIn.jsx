@@ -7,7 +7,7 @@ import { login } from '../../store/api-action';
 import Header from '../blocks/header/Header';
 import HiddenSvg from '../svg/HiddenSvg';
 import { APP_ROUTES, AuthorizationStatus } from '../../const';
-import { ActionCreator } from '../../store/action';
+import { redirectToRoute } from '../../store/action';
 
 function SignIn({ city, onSubmit, isAuthorized, redirectToRoot }) {
 
@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(login(authData));
   },
   redirectToRoot() {
-    dispatch(ActionCreator.redirectToRoute(APP_ROUTES.ROOT));
+    dispatch(redirectToRoute(APP_ROUTES.ROOT));
   },
 });
 

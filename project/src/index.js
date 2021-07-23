@@ -9,12 +9,12 @@ import { checkAuth, fetchOffersList } from './store/api-action';
 
 import App from './components/app/app';
 import { reducer } from './store/reducer';
-import { ActionCreator } from './store/action';
+import { requireAuth } from './store/action';
 import { redirect } from './store/middlewares/redirect';
 import { AuthorizationStatus } from './const';
 
 const api = createAPI(
-  () => store.dispatch(ActionCreator.requireAuth(AuthorizationStatus.NO_AUTH)),
+  () => store.dispatch(requireAuth(AuthorizationStatus.NO_AUTH)),
 );
 
 const store = createStore(

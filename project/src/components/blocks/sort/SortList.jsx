@@ -3,7 +3,7 @@ import uuid from 'react-uuid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { ActionCreator } from '../../../store/action';
+import { sort } from '../../../store/action';
 import { SORT_TYPES } from '../../../const';
 import SortItem from '../sort/SortItem';
 
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSort(sortType) {
-    dispatch(ActionCreator.sort(sortType));
+    dispatch(sort(sortType));
   },
 });
 

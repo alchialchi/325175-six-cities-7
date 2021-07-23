@@ -12,48 +12,56 @@ export const ActionType = {
   SET_USER: 'user',
 };
 
-export const ActionCreator = {
-  changeCity: (city) => ({
-    type: ActionType.CHANGE_CITY,
-    payload: city,
-  }),
-  setActiveOfferId: (id) => ({
-    type: ActionType.ACTIVE_OFFER_ID,
-    payload: id,
-  }),
-  sort: (sortType) => ({
-    type: ActionType.SORT,
-    payload: sortType,
-  }),
-  loadOffers: (offers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: offers,
-  }),
-  loadOffer: (payload) => ({
-    type: ActionType.LOAD_OFFER,
-    payload,
-  }),
-  loadReviews: (payload) => ({
-    type: ActionType.LOAD_REVIEWS,
-    payload,
-  }),
-  loadNearby: (payload) => ({
-    type: ActionType.LOAD_NEARBY,
-    payload,
-  }),
-  requireAuth: (status) => ({
-    type: ActionType.REQUIRE_AUTH,
-    payload: status,
-  }),
-  logout: () => ({
-    type: ActionType.LOG_OUT,
-  }),
-  redirectToRoute: (url) => ({
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: url,
-  }),
-  setUser: (payload) => ({
-    type: ActionType.SET_USER,
-    payload,
-  }),
-};
+export const changeCity = (city) => ({
+  type: ActionType.CHANGE_CITY,
+  payload: city,
+});
+
+export const setActiveOfferId = (id) => ({
+  type: ActionType.ACTIVE_OFFER_ID,
+  payload: id,
+});
+
+export const sort = (sortType) => ({
+  type: ActionType.SORT,
+  payload: sortType,
+});
+
+export const loadOffers = (offers) => ({
+  type: ActionType.LOAD_OFFERS,
+  payload: offers,
+});
+
+export const loadOffer = (payload) => ({
+  type: ActionType.LOAD_OFFER,
+  payload,
+});
+
+export const loadReviews = (payload) => ({
+  type: ActionType.LOAD_REVIEWS,
+  payload,
+});
+
+export const loadNearby = (payload) => ({
+  type: ActionType.LOAD_NEARBY,
+  payload,
+});
+
+export const requireAuth = (status) => ({
+  type: ActionType.REQUIRE_AUTH,
+  payload: status,
+});
+
+export const logout = () => ({
+  type: ActionType.LOG_OUT,
+});
+
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
+});
+
+export const setUser = (payload) => ({
+  type: ActionType.SET_USER,
+  payload,
+});
