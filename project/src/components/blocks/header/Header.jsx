@@ -6,10 +6,9 @@ import Logo from './Logo';
 import UserInfo from './UserInfo';
 import LogoutLink from './LogoutLink';
 import LoginLink from './LoginLink';
-import { getAuthorizationStatus, getUser } from '../../../store/user/selectors';
+import { getAuthorizationStatus } from '../../../store/user/selectors';
 
 function Header() {
-  const userEmail = useSelector(getUser).email;
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
@@ -22,7 +21,7 @@ function Header() {
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
-              {isAuthorized && <UserInfo userEmail={userEmail} />}
+              {isAuthorized && <UserInfo />}
               <li className="header__nav-item">
                 {isAuthorized ? <LogoutLink /> : <LoginLink />}
               </li>

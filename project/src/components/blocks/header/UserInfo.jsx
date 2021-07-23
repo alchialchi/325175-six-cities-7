@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { APP_ROUTES } from '../../../const';
 import { getUser } from '../../../store/user/selectors';
 
-function UserInfo({ userEmail }) {
+function UserInfo() {
+  const userEmail = useSelector(getUser).email;
   const userAvatar = useSelector(getUser).avatarUrl;
 
   return (
@@ -25,9 +25,5 @@ function UserInfo({ userEmail }) {
     </li>
   );
 }
-
-UserInfo.propTypes = {
-  userEmail: PropTypes.string,
-};
 
 export default React.memo(UserInfo);
