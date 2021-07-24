@@ -1,14 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { AuthorizationStatus } from '../../../const';
 import Logo from './Logo';
 import UserInfo from './UserInfo';
 import LogoutLink from './LogoutLink';
 import LoginLink from './LoginLink';
+import { getAuthorizationStatus } from '../../../store/user/selectors';
 
-function Header({ isAuthorized }) {
+function Header() {
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+
   return (
     <header className="header">
       <div className="container">
@@ -30,14 +33,4 @@ function Header({ isAuthorized }) {
   );
 }
 
-Header.propTypes = {
-  isAuthorized: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  isAuthorized: state.authorizationStatus === AuthorizationStatus.AUTH,
-});
-
-export { Header };
-export default connect(mapStateToProps)(Header);
-
+export default React.memo(Header);

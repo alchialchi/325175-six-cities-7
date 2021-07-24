@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Switch, Route, Router as BrowserRouter } from 'react-router-dom';
 
 import { APP_ROUTES } from '../../const';
@@ -13,11 +12,14 @@ import { browserHistory } from '../../services/browser-history';
 import PrivateRoute from '../private-route/private-route';
 import Loading from '../blocks/loading/Loading';
 import { isCheckedAuth } from '../../store/api-action';
+import { getAuthorizationStatus } from '../../store/user/selectors';
+import { getIsOffersDataLoaded } from '../../store/data/selectors';
 
-function App(props) {
-  const { authorizationStatus, isOffersListLoaded} = props;
+function App() {
+  const isOffersDataLoaded = useSelector(getIsOffersDataLoaded);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
 
-  if (isCheckedAuth(authorizationStatus) || !isOffersListLoaded) {
+  if (isCheckedAuth(authorizationStatus) || !isOffersDataLoaded) {
     return (
       <Loading />
     );
@@ -29,7 +31,10 @@ function App(props) {
         <Route exact path={APP_ROUTES.ROOT}>
           <MainPage />
         </Route>
-        <Route exact path={APP_ROUTES.SIGN_IN}>
+        <Route
+          exact
+          path={APP_ROUTES.SIGN_IN}
+        >
           <SignIn />
         </Route>
         <PrivateRoute
@@ -48,15 +53,4 @@ function App(props) {
   );
 }
 
-App.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  isOffersListLoaded: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
-  isOffersListLoaded: state.isOffersListLoaded,
-});
-
-export { App };
-export default connect(mapStateToProps, null)(App);
+export default App;

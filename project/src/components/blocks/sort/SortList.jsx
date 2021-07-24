@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import uuid from 'react-uuid';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { ActionCreator } from '../../../store/action';
+import { sort } from '../../../store/action';
 import { SORT_TYPES } from '../../../const';
 import SortItem from '../sort/SortItem';
+import { getSortType } from '../../../store/work-process/selectors';
 
-function SortList({ sortType, onSort }) {
+function SortList() {
   const [isOpened, setIsOpened] = useState(false);
+  const dispatch = useDispatch();
+  const sortType = useSelector(getSortType);
+
   const clickHandler = (payload) => {
     setIsOpened(false);
-    onSort(payload);
+    dispatch(sort(payload));
   };
 
   return (
@@ -41,23 +44,4 @@ function SortList({ sortType, onSort }) {
   );
 }
 
-SortList.propTypes = {
-  onSort: PropTypes.func.isRequired,
-  sortType: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  }),
-};
-
-const mapStateToProps = (state) => ({
-  sortType: state.sortType,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSort(sortType) {
-    dispatch(ActionCreator.sort(sortType));
-  },
-});
-
-export { SortList };
-export default connect(mapStateToProps, mapDispatchToProps)(SortList);
+export default React.memo(SortList);

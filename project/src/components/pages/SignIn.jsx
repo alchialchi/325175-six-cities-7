@@ -1,15 +1,21 @@
 import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { login } from '../../store/api-action';
 import Header from '../blocks/header/Header';
 import HiddenSvg from '../svg/HiddenSvg';
-import { APP_ROUTES, AuthorizationStatus } from '../../const';
-import { ActionCreator } from '../../store/action';
+import { APP_ROUTES } from '../../const';
+import { redirectToRoute } from '../../store/action';
+import { getCity } from '../../store/work-process/selectors';
+import { getAuthorizationStatus } from '../../store/user/selectors';
+import { AuthorizationStatus } from '../../const';
 
-function SignIn({ city, onSubmit, isAuthorized, redirectToRoot }) {
+function SignIn() {
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+  const dispatch = useDispatch();
+  const city = useSelector(getCity);
 
   const loginRef = useRef();
   const passwordRef = useRef();
@@ -17,14 +23,14 @@ function SignIn({ city, onSubmit, isAuthorized, redirectToRoot }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSubmit({
+    dispatch(login({
       login: loginRef.current.value,
       password: passwordRef.current.value,
-    });
+    }));
   };
 
   if (isAuthorized) {
-    redirectToRoot();
+    dispatch(redirectToRoute(APP_ROUTES.ROOT));
   }
 
   return (
@@ -75,26 +81,4 @@ function SignIn({ city, onSubmit, isAuthorized, redirectToRoot }) {
   );
 }
 
-SignIn.propTypes = {
-  city: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
-  redirectToRoot: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  city: state.city,
-  isAuthorized: state.authorizationStatus === AuthorizationStatus.AUTH,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(login(authData));
-  },
-  redirectToRoot() {
-    dispatch(ActionCreator.redirectToRoute(APP_ROUTES.ROOT));
-  },
-});
-
-export { SignIn };
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;

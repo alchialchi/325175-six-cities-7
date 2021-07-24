@@ -1,14 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 import Map from '../map/Map';
 import OffersList from '../offers/OffersList';
 import SortList from '../sort/SortList';
 import NoCities from '../cities/NoCities';
-import offerProp from '../offers/offer.prop';
 import { CARD_TYPES, CITIES } from '../../../const';
+import { sortOffers } from '../../../utils';
+import { getActiveOffer, getSortType, getCity } from '../../../store/work-process/selectors';
+import { getOffers } from '../../../store/data/selectors';
 
-export default function Cities({ offers, city, activeOffer }) {
+export default function Cities() {
+  const city = useSelector(getCity);
+  const allOffers = useSelector(getOffers);
+  const activeOffer = useSelector(getActiveOffer);
+  const sortType = useSelector(getSortType).name;
+
+  const offers = useMemo(() => sortOffers(allOffers, sortType, city), [allOffers, sortType, city]);
 
   if (!offers.length) {
     return <NoCities city={city} />;
@@ -34,13 +42,3 @@ export default function Cities({ offers, city, activeOffer }) {
     </div>
   );
 }
-
-Cities.propTypes = {
-  offers: PropTypes.arrayOf(offerProp).isRequired,
-  city: PropTypes.string.isRequired,
-  activeOffer: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.shape({}),
-  ]),
-};

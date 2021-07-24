@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import offerProp from './offer.prop';
 import { getRatingInPercent } from '../../../utils';
 import { OFFER_TYPES, CARD_TYPES, APP_ROUTES} from '../../../const';
+import { useDispatch } from 'react-redux';
+import { sendFavorite } from '../../../store/api-action';
 
 const IMAGE_TYPES = {
   CITIES: {
@@ -17,7 +19,7 @@ const IMAGE_TYPES = {
   },
 };
 
-export default function OfferCard(props) {
+function OfferCard(props) {
   const { offer, onMouseEnter, cardType } = props;
 
   const {
@@ -31,10 +33,13 @@ export default function OfferCard(props) {
     rating,
   } = offer;
 
+  const dispatch = useDispatch();
+  const status = isFavorite ? '0' : '1';
+
   return (
     <article className={`${cardType}${cardType === CARD_TYPES.CITIES ? '__place-card' : '__card'} place-card`}
-      onMouseEnter={cardType === CARD_TYPES.FAVORITES ? null : () => onMouseEnter(id)}
-      onMouseLeave={cardType === CARD_TYPES.FAVORITES ? null : () => onMouseEnter({})}
+      onMouseEnter={cardType === CARD_TYPES.CITIES ? () => onMouseEnter(id) : null}
+      onMouseLeave={cardType === CARD_TYPES.CITIES ? () => onMouseEnter({}) : null}
     >
       {isPremium && cardType === CARD_TYPES.CITIES ?
         <div className="place-card__mark">
@@ -58,11 +63,16 @@ export default function OfferCard(props) {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={
-            isFavorite
-              ? 'place-card__bookmark-button place-card__bookmark-button--active button'
-              : 'place-card__bookmark-button button'
-          } type="button"
+          <button
+            className={
+              isFavorite
+                ? 'place-card__bookmark-button place-card__bookmark-button--active button'
+                : 'place-card__bookmark-button button'
+            }
+            type="button"
+            onClick={() => {
+              dispatch(sendFavorite(id, status));
+            }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
@@ -90,3 +100,6 @@ OfferCard.propTypes = {
   cardType: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func,
 };
+
+export default React.memo(OfferCard);
+
