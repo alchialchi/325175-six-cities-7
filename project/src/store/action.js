@@ -48,7 +48,7 @@ export const requireAuth = createAction(ActionType.REQUIRE_AUTH, (status) => ({
   payload: status,
 }));
 
-export const logout = createAction(ActionType.LOG_OUT);
+export const userLogout = createAction(ActionType.LOG_OUT);
 
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({
   payload: url,

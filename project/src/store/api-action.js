@@ -1,4 +1,4 @@
-import { loadOffers, loadOffer, loadReviews, loadNearby, redirectToRoute, loadUserInfo, requireAuth, updateData, loadFavorites } from './action';
+import { loadOffers, loadOffer, loadReviews, loadNearby, redirectToRoute, loadUserInfo, requireAuth, updateData, loadFavorites, userLogout } from './action';
 import { adaptOfferToClient, adaptReviewToClient, adaptUserInfoToClient } from '../utils';
 import { APP_ROUTES, API_ROUTES, AuthorizationStatus } from '../const';
 
@@ -71,7 +71,7 @@ export const login = ({ login: email, password }) => (dispatch, _getState, api) 
 export const logout = () => (dispatch, _getState, api) => (
   api.delete(API_ROUTES.LOG_OUT)
     .then(() => localStorage.removeItem('token'))
-    .then(() => dispatch(logout()))
+    .then(() => dispatch(userLogout()))
 );
 
 export const fetchFavorites = () => (dispatch, _getState, api) => (

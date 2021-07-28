@@ -64,7 +64,7 @@ describe('Async operations', () => {
       });
   });
 
-  it.skip('should make a correct API call to DELETE /logout', () => {
+  it('should make a correct API call to DELETE /logout', () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const logoutLoader = logout();

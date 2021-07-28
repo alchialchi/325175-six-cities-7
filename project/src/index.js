@@ -10,6 +10,8 @@ import rootReducer from './store/root-reducer';
 import { requireAuth } from './store/action';
 import { redirect } from './store/middlewares/redirect';
 import { AuthorizationStatus } from './const';
+import { Router as BrowserRouter } from 'react-router-dom';
+import browserHistory from './services/browser-history';
 
 const api = createAPI(
   () => store.dispatch(requireAuth(AuthorizationStatus.NO_AUTH)),
@@ -31,7 +33,9 @@ store.dispatch(fetchOffersList());
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter history={browserHistory}>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

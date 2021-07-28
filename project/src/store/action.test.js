@@ -7,7 +7,7 @@ import {
   loadOffers,
   loadReviews,
   loadUserInfo,
-  logout,
+  userLogout,
   redirectToRoute,
   requireAuth,
   setActiveOfferId,
@@ -104,7 +104,7 @@ describe('Actions', () => {
       type: ActionType.LOG_OUT,
     };
 
-    expect(logout()).toEqual(expectedAction);
+    expect(userLogout()).toEqual(expectedAction);
   });
 
   it('redirect action creator should return correct action', () => {

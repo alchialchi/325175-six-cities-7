@@ -148,9 +148,6 @@ function Room(props) {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">
-                    Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
-                  </h2>
                   <ReviewsList reviews={reviews} />
                   {isAuthorized && <ReviewForm id={id} />}
                 </section>
