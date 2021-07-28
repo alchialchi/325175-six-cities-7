@@ -6,6 +6,14 @@ export const APP_ROUTES = {
   NOT_FOUND: '/not-found',
 };
 
+export const API_ROUTES = {
+  HOTELS: '/hotels',
+  LOGIN: '/login',
+  LOG_OUT: '/logout',
+  COMMENTS: '/comments',
+  FAVORITE: '/favorite',
+};
+
 export const MAX_RATING = 5;
 
 export const RATINGS = {

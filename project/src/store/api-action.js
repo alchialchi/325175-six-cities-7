@@ -1,14 +1,6 @@
 import { loadOffers, loadOffer, loadReviews, loadNearby, redirectToRoute, loadUserInfo, requireAuth, updateData, loadFavorites } from './action';
 import { adaptOfferToClient, adaptReviewToClient, adaptUserInfoToClient } from '../utils';
-import { APP_ROUTES, AuthorizationStatus } from '../const';
-
-const API_ROUTES = {
-  HOTELS: '/hotels',
-  LOGIN: '/login',
-  LOG_OUT: '/logout',
-  COMMENTS: '/comments',
-  FAVORITE: '/favorite',
-};
+import { APP_ROUTES, API_ROUTES, AuthorizationStatus } from '../const';
 
 export const fetchOffersList = () => (dispatch, _getState, api) => (
   api.get(API_ROUTES.HOTELS)
@@ -35,14 +27,14 @@ export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
     .catch(() => dispatch(redirectToRoute(APP_ROUTES.NOT_FOUND)))
 );
 
-export const checkAuth = () => (dispatch, _getState, api) => {
+export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(API_ROUTES.LOGIN)
     .then(({ data }) => {
       dispatch(requireAuth(AuthorizationStatus.AUTH));
       dispatch(loadUserInfo(adaptUserInfoToClient(data)));
     })
-    .catch(() => {});
-};
+    .catch(() => {})
+);
 
 export const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(`${API_ROUTES.COMMENTS}/${id}`)
@@ -64,24 +56,23 @@ export const createComment = (id, { comment, rating }) => (dispatch, _getState, 
     .catch(() => {})
 );
 
-export const login = ({ login: email, password }) => (dispatch, _getState, api) => {
+export const login = ({ login: email, password }) => (dispatch, _getState, api) => (
   api.post(API_ROUTES.LOGIN, { email, password })
     .then(({ data }) => {
       localStorage.setItem('token', data.token);
       api.defaults.headers['x-token'] = data.token;
       dispatch(loadUserInfo(adaptUserInfoToClient(data)));
-      dispatch(requireAuth(AuthorizationStatus.AUTH));
-      dispatch(redirectToRoute(APP_ROUTES.ROOT));
-    });
-};
+    })
+    .then(() => dispatch(requireAuth(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(redirectToRoute(APP_ROUTES.ROOT)))
+    .then(dispatch(fetchOffersList()))
+);
 
-export const logout = () => (dispatch, _getState, api) => {
+export const logout = () => (dispatch, _getState, api) => (
   api.delete(API_ROUTES.LOG_OUT)
-    .then(() => {
-      localStorage.removeItem('token');
-      dispatch(logout());
-    });
-};
+    .then(() => localStorage.removeItem('token'))
+    .then(() => dispatch(logout()))
+);
 
 export const fetchFavorites = () => (dispatch, _getState, api) => (
   api.get(API_ROUTES.FAVORITE)

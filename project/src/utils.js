@@ -17,6 +17,10 @@ export const sortOffers = (offers, type, city) => {
 };
 
 export const adaptOfferToClient = (offer) => {
+  if (offer?.fake) {
+    return offer;
+  }
+
   const adaptedOffer = {
     ...offer,
     isFavorite: offer.is_favorite,
@@ -40,6 +44,10 @@ export const adaptOfferToClient = (offer) => {
 };
 
 export const adaptReviewToClient = (review) => {
+  if (review?.fake) {
+    return review;
+  }
+
   const adaptedReview = {
     ...review,
     user: {
@@ -54,6 +62,10 @@ export const adaptReviewToClient = (review) => {
 };
 
 export const adaptUserInfoToClient = (userInfo) => {
+  if (userInfo?.fake) {
+    return userInfo;
+  }
+
   const adaptedUserInfo = {
     ...userInfo,
     avatarUrl: userInfo.avatar_url,

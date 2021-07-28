@@ -9,7 +9,7 @@ export const ActionType = {
   LOAD_REVIEWS: 'data/loadReviews',
   LOAD_NEARBY: 'data/loadNearby',
   LOAD_FAVORITES: 'data/favorites',
-  REQUIRE_AUTH: 'user/reduireAuth',
+  REQUIRE_AUTH: 'user/requireAuth',
   LOG_OUT: 'user/logout',
   REDIRECT_TO_ROUTE: 'redirectToRoute',
   LOAD_USER_INFO: 'user/loadUserInfo',
