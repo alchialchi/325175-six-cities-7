@@ -9,7 +9,7 @@ export const ActionType = {
   LOAD_REVIEWS: 'data/loadReviews',
   LOAD_NEARBY: 'data/loadNearby',
   LOAD_FAVORITES: 'data/favorites',
-  REQUIRE_AUTH: 'user/reduireAuth',
+  REQUIRE_AUTH: 'user/requireAuth',
   LOG_OUT: 'user/logout',
   REDIRECT_TO_ROUTE: 'redirectToRoute',
   LOAD_USER_INFO: 'user/loadUserInfo',
@@ -48,7 +48,7 @@ export const requireAuth = createAction(ActionType.REQUIRE_AUTH, (status) => ({
   payload: status,
 }));
 
-export const logout = createAction(ActionType.LOG_OUT);
+export const userLogout = createAction(ActionType.LOG_OUT);
 
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({
   payload: url,

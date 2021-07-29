@@ -4,23 +4,12 @@ import { Link } from 'react-router-dom';
 
 import offerProp from './offer.prop';
 import { getRatingInPercent } from '../../../utils';
-import { OFFER_TYPES, CARD_TYPES, APP_ROUTES} from '../../../const';
+import { OFFER_TYPES, CARD_TYPES, APP_ROUTES, MAIN_TYPE } from '../../../const';
 import { useDispatch } from 'react-redux';
 import { sendFavorite } from '../../../store/api-action';
 
-const IMAGE_TYPES = {
-  CITIES: {
-    width: 260,
-    height: 200,
-  },
-  FAVORITES: {
-    width: 150,
-    height: 110,
-  },
-};
-
 function OfferCard(props) {
-  const { offer, onMouseEnter, cardType } = props;
+  const { offer, cardType = MAIN_TYPE, onMouseEnter = () => {}, onMouseLeave = () => {} } = props;
 
   const {
     isPremium,
@@ -35,29 +24,29 @@ function OfferCard(props) {
 
   const dispatch = useDispatch();
   const status = isFavorite ? '0' : '1';
+  const bookmarkClasses = 'place-card__bookmark-button button';
 
   return (
-    <article className={`${cardType}${cardType === CARD_TYPES.CITIES ? '__place-card' : '__card'} place-card`}
-      onMouseEnter={cardType === CARD_TYPES.CITIES ? () => onMouseEnter(id) : null}
-      onMouseLeave={cardType === CARD_TYPES.CITIES ? () => onMouseEnter({}) : null}
+    <article className={CARD_TYPES[cardType].PLACE_CARD}
+      onMouseEnter={() => onMouseEnter(id)} onMouseLeave={onMouseLeave}
     >
-      {isPremium && cardType === CARD_TYPES.CITIES ?
+      {isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
         : null}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={CARD_TYPES[cardType].IMAGE_WRAPPER}>
         <Link to={`${APP_ROUTES.OFFER}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
-            width={cardType === CARD_TYPES.FAVORITES ? IMAGE_TYPES.FAVORITES.width : IMAGE_TYPES.CITIES.width}
-            height={cardType === CARD_TYPES.FAVORITES ? IMAGE_TYPES.FAVORITES.height : IMAGE_TYPES.CITIES.height}
+            width={CARD_TYPES[cardType].IMAGE.WIDTH}
+            height={CARD_TYPES[cardType].IMAGE.HEIGHT}
             alt="Place"
           />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={CARD_TYPES[cardType].CARD_INFO}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -66,8 +55,8 @@ function OfferCard(props) {
           <button
             className={
               isFavorite
-                ? 'place-card__bookmark-button place-card__bookmark-button--active button'
-                : 'place-card__bookmark-button button'
+                ? `${bookmarkClasses} place-card__bookmark-button--active`
+                : bookmarkClasses
             }
             type="button"
             onClick={() => {
@@ -99,6 +88,7 @@ OfferCard.propTypes = {
   offer: offerProp,
   cardType: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 export default React.memo(OfferCard);

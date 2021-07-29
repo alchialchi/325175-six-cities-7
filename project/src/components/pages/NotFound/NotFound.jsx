@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from '../blocks/header/Header';
-import { APP_ROUTES } from '../../const';
+import Header from '../../blocks/header/Header';
+import { APP_ROUTES } from '../../../const';
 
 function NotFound() {
   return (

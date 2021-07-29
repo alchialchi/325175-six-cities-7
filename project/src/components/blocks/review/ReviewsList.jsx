@@ -7,9 +7,14 @@ import reviewsProp from './review.prop';
 
 export default function ReviewsList({ reviews }) {
   return (
-    <ul className="reviews__list">
-      {reviews.map((review) => <Review key={uuid()} review={review}/> )}
-    </ul>
+    <React.Fragment>
+      <h2 className="reviews__title">
+        Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
+      </h2>
+      <ul className="reviews__list">
+        {reviews.map((review) => <Review key={uuid()} review={review}/> )}
+      </ul>
+    </React.Fragment>
   );
 }
 

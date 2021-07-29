@@ -6,7 +6,7 @@ import { changeCity } from '../../../store/action';
 import LocationItem from './LocationItem';
 import { getCities, getCity } from '../../../store/work-process/selectors';
 
-function LocationList() {
+function LocationsList() {
   const dispatch = useDispatch();
   const activeCity = useSelector(getCity);
   const cities = useSelector(getCities);
@@ -29,4 +29,4 @@ function LocationList() {
   );
 }
 
-export default React.memo(LocationList);
+export default React.memo(LocationsList);

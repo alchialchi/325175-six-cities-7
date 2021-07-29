@@ -2,29 +2,36 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import HiddenSvg from '../svg/HiddenSvg';
-import Header from '../blocks/header/Header';
-import FavoriteItems from '../blocks/favorites/FavoriteItems';
+import HiddenSvg from '../../svg/HiddenSvg';
+import Header from '../../blocks/header/Header';
+import FavoriteItems from '../../blocks/favorites/FavoriteItems';
 
-import { APP_ROUTES } from '../../const';
-import { getFavorites } from '../../store/data/selectors';
-import { fetchFavorites } from '../../store/api-action';
-import FavoritesEmpty from '../blocks/favorites/FavoritesEmpty';
+import { APP_ROUTES } from '../../../const';
+import { getFavorites, getIsFavoritesDataLoaded } from '../../../store/data/selectors';
+import { fetchFavorites } from '../../../store/api-action';
+import FavoritesEmpty from '../../blocks/favorites/FavoritesEmpty';
+import Loading from '../../blocks/loading/Loading';
 
 function Favorites() {
   const dispatch = useDispatch();
   const offers = useSelector(getFavorites);
+  const isLoaded = useSelector(getIsFavoritesDataLoaded);
+  const noFavorites = offers.length === 0;
 
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch]);
 
+  if (!isLoaded) {
+    return <Loading />;
+  }
+
   return (
     <React.Fragment>
       <HiddenSvg />
-      <div className="page">
+      <div className={`page ${noFavorites ? 'page--favorites-empty' : ''}`}>
         <Header />
-        <main className="page__main page__main--favorites">
+        <main className={`page__main page__main--favorites ${noFavorites ? 'page__main--favorites-empty' : ''}`}>
           <div className="page__favorites-container container">
             {!offers.length
               ? <FavoritesEmpty />

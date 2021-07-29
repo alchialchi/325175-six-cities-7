@@ -13,7 +13,7 @@ import offerProp from '../../blocks/offers/offer.prop';
 import reviewsProp from '../../blocks/review/review.prop';
 
 import { getRatingInPercent } from '../../../utils';
-import { AuthorizationStatus, CARD_TYPES } from '../../../const';
+import { AuthorizationStatus, NEARBY_TYPE } from '../../../const';
 import { getAuthorizationStatus } from '../../../store/user/selectors';
 import { sendFavorite } from '../../../store/api-action';
 
@@ -148,9 +148,6 @@ function Room(props) {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">
-                    Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
-                  </h2>
                   <ReviewsList reviews={reviews} />
                   {isAuthorized && <ReviewForm id={id} />}
                 </section>
@@ -166,7 +163,7 @@ function Room(props) {
                 Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
-                <OffersList offers={nearbyOffers} type={CARD_TYPES.NEAR_PLACES}/>
+                <OffersList offers={nearbyOffers} type={NEARBY_TYPE}/>
               </div>
             </section>
           </div>

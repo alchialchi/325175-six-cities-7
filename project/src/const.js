@@ -6,6 +6,14 @@ export const APP_ROUTES = {
   NOT_FOUND: '/not-found',
 };
 
+export const API_ROUTES = {
+  HOTELS: '/hotels',
+  LOGIN: '/login',
+  LOG_OUT: '/logout',
+  COMMENTS: '/comments',
+  FAVORITE: '/favorite',
+};
+
 export const MAX_RATING = 5;
 
 export const RATINGS = {
@@ -96,10 +104,47 @@ export const OFFER_TYPES = {
 };
 
 export const CARD_TYPES = {
-  FAVORITES: 'favorites',
-  CITIES: 'cities',
-  NEAR_PLACES: 'near-places',
+  MAIN: {
+    PLACE_CARD: 'cities__place-card place-card',
+    IMAGE_WRAPPER: 'cities__image-wrapper place-card__image-wrapper',
+    CARD_INFO: 'place-card__info',
+    IMAGE: {
+      WIDTH: 260,
+      HEIGHT: 200,
+    },
+  },
+  FAVORITES: {
+    PLACE_CARD: 'favorites__card place-card',
+    IMAGE_WRAPPER: 'favorites__image-wrapper place-card__image-wrapper',
+    CARD_INFO: 'favorites__card-info place-card__info',
+    IMAGE: {
+      WIDTH: 150,
+      HEIGHT: 110,
+    },
+  },
+  NEARBY: {
+    PLACE_CARD: 'near-places__card place-card',
+    IMAGE_WRAPPER: 'near-places__image-wrapper place-card__image-wrapper',
+    CARD_INFO: 'place-card__info',
+    IMAGE: {
+      WIDTH: 260,
+      HEIGHT: 200,
+    },
+  },
 };
+
+export const CARD_LIST_TYPES = {
+  MAIN: {
+    LIST: 'cities__places-list places__list tabs__content',
+  },
+  NEARBY: {
+    LIST: 'near-places__list places__list',
+  },
+};
+
+export const MAIN_TYPE = 'MAIN';
+export const FAVORITES_TYPE = 'FAVORITES';
+export const NEARBY_TYPE = 'NEARBY';
 
 export const AuthorizationStatus = {
   AUTH: 'AUTH',
