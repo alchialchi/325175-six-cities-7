@@ -17,7 +17,7 @@ const storeMockedData = {
 
 describe('OfferCard', () => {
   it('should render correctly', () => {
-    const cardType = 'favorites';
+    const cardType = 'FAVORITES';
 
     render(
       <Provider store={mockStore(storeMockedData)}>

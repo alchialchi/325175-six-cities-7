@@ -18,7 +18,7 @@ const storeMockedData = {
 
 describe('OfferCard', () => {
   it('should render correctly', () => {
-    const cardType = 'cities';
+    const cardType = 'MAIN';
     const onMouseEnter = jest.fn();
 
     render(

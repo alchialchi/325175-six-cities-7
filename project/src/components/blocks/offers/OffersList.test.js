@@ -16,7 +16,7 @@ describe('OffersList', () => {
       PROCESS: {authorizationStatus: 'NO_AUTH'},
       DATA: { isOffersDataLoaded: true },
     };
-    const type = 'cities';
+    const type = 'MAIN';
     render(
       <Provider store={mockStore(storeMockedData)}>
         <Router history={history}>

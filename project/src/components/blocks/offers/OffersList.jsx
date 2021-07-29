@@ -1,31 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { setActiveOfferId } from '../../../store/action';
-import { CARD_TYPES } from '../../../const';
+import { useSelector } from 'react-redux';
+import { CARD_LIST_TYPES, MAIN_TYPE } from '../../../const';
 
 import offerProp from './offer.prop';
 import OfferCard from './OfferCard';
 import { getIsOffersDataLoaded } from '../../../store/data/selectors';
 import Loading from '../loading/Loading';
 
-const getClassByType = (type) => {
-  switch (type) {
-    case CARD_TYPES.FAVORITES:
-      return `${type}__places`;
-    case CARD_TYPES.NEAR_PLACES:
-      return `${type}__list places__list`;
-    default:
-      return `${type}__places-list places__list tabs__content`;
-  }
-};
-
-function OffersList({ offers, type = CARD_TYPES.CITIES }) {
-  const dispatch = useDispatch();
+function OffersList({
+  offers,
+  type = MAIN_TYPE,
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
+}) {
   const isOffersDataLoaded = useSelector(getIsOffersDataLoaded);
 
   return (
-    <div className={getClassByType(type)}>
+    <div className={CARD_LIST_TYPES[type].LIST}>
       {!isOffersDataLoaded
         ? <Loading />
         : offers.map((offer) => (
@@ -33,7 +25,8 @@ function OffersList({ offers, type = CARD_TYPES.CITIES }) {
             key={offer.id}
             cardType={type}
             offer={offer}
-            onMouseEnter={(payload) => dispatch(setActiveOfferId(payload))}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
           />
         ))}
     </div>
@@ -43,6 +36,8 @@ function OffersList({ offers, type = CARD_TYPES.CITIES }) {
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
   type: PropTypes.string,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 export default OffersList;
