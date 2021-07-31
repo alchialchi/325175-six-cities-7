@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import HiddenSvg from '../../svg/HiddenSvg';
 import Header from '../../blocks/header/Header';
-import FavoriteItems from '../../blocks/favorites/FavoriteItems';
+import FavoritesList from '../../blocks/favorites/FavoritesList';
 
 import { APP_ROUTES } from '../../../const';
 import { getFavorites, getIsFavoritesDataLoaded } from '../../../store/data/selectors';
@@ -14,9 +14,9 @@ import Loading from '../../blocks/loading/Loading';
 
 function Favorites() {
   const dispatch = useDispatch();
-  const offers = useSelector(getFavorites);
+  const favoriteHotels = useSelector(getFavorites);
   const isLoaded = useSelector(getIsFavoritesDataLoaded);
-  const noFavorites = offers.length === 0;
+  const noFavorites = favoriteHotels.length === 0;
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -33,14 +33,12 @@ function Favorites() {
         <Header />
         <main className={`page__main page__main--favorites ${noFavorites ? 'page__main--favorites-empty' : ''}`}>
           <div className="page__favorites-container container">
-            {!offers.length
+            {!favoriteHotels.length
               ? <FavoritesEmpty />
               : (
                 <section className="favorites">
                   <h1 className="favorites__title">Saved listing</h1>
-                  <ul className="favorites__list">
-                    <FavoriteItems offers={offers} />
-                  </ul>
+                  <FavoritesList favoriteHotels={favoriteHotels} />
                 </section>
               )}
           </div>

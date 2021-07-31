@@ -4,11 +4,11 @@ import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { createMemoryHistory } from 'history';
-import FavoriteItems from './FavoriteItems';
+import FavoritesList from './FavoritesList';
 
 const mockStore = configureStore();
 const history = createMemoryHistory();
-const offers = {
+const offers = [{
   bedrooms: 3,
   city: {
     location: {
@@ -49,7 +49,7 @@ const offers = {
   rating: 4.8,
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
-};
+}];
 
 const storeMockedData = {
   PROCESS: {
@@ -59,17 +59,14 @@ const storeMockedData = {
     isOffersDataLoaded: true,
   },
 };
-const city = 'Paris';
+const city = 'Amsterdam';
 
-describe('Favorite Items', () => {
+describe('Favorites List', () => {
   it('should render correctly', () => {
     render(
       <Provider store={mockStore(storeMockedData)}>
         <Router history={history}>
-          <FavoriteItems
-            city={city}
-            offers={[offers]}
-          />
+          <FavoritesList favoriteHotels={offers}/>
         </Router>
       </Provider>,
     );
