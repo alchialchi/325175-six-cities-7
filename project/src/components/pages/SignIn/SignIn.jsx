@@ -5,17 +5,19 @@ import { Link } from 'react-router-dom';
 import { login } from '../../../store/api-action';
 import Header from '../../blocks/header/Header';
 import HiddenSvg from '../../svg/HiddenSvg';
-import { APP_ROUTES } from '../../../const';
+import { AlertMessage, APP_ROUTES } from '../../../const';
 import { redirectToRoute } from '../../../store/action';
 import { getCity } from '../../../store/work-process/selectors';
-import { getAuthorizationStatus } from '../../../store/user/selectors';
+import { getAuthorizationStatus, getIsOffline } from '../../../store/user/selectors';
 import { AuthorizationStatus } from '../../../const';
+import Toast from '../../blocks/toast/toast';
 
 function SignIn() {
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
   const dispatch = useDispatch();
   const city = useSelector(getCity);
+  const isOffline = useSelector(getIsOffline);
 
   const loginRef = useRef();
   const passwordRef = useRef();
@@ -38,6 +40,7 @@ function SignIn() {
       <HiddenSvg />
       <div className="page page--gray page--login">
         <Header />
+        {isOffline && <Toast message={AlertMessage.OFFLINE} />}
         <main className="page__main page__main--login">
           <div className="page__login-container container">
             <section className="login">

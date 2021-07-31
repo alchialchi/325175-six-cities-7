@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import { createComment } from '../../../store/api-action';
 import RatingList from '../rating/RatingList';
-import Toast from '../toast/Toast';
-import { COMMENT_LENGTH, TOAST_MESSAGES, DEFAULT_RATING } from '../../../const';
+import Toast from '../toast/toast';
+import { COMMENT_LENGTH, DEFAULT_RATING } from '../../../const';
 
 function ReviewForm({ id }) {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ function ReviewForm({ id }) {
       onChange={handleFormChange}
       onFocus={handleFormChange}
     >
-      {isSendingError && <Toast message={TOAST_MESSAGES.REVIEW_ERROR} />}
+      {isSendingError && <Toast />}
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>

@@ -5,17 +5,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import HiddenSvg from '../../svg/HiddenSvg';
 import Header from '../../blocks/header/Header';
 import FavoritesList from '../../blocks/favorites/FavoritesList';
+import Toast from '../../blocks/toast/toast';
 
 import { APP_ROUTES } from '../../../const';
-import { getFavorites, getIsFavoritesDataLoaded } from '../../../store/data/selectors';
+import { getFavorites, getIsFavoritesDataLoaded, getIsDataError } from '../../../store/data/selectors';
+import { getIsOffline } from '../../../store/user/selectors';
 import { fetchFavorites } from '../../../store/api-action';
 import FavoritesEmpty from '../../blocks/favorites/FavoritesEmpty';
 import Loading from '../../blocks/loading/Loading';
+import { AlertMessage } from '../../../const';
 
 function Favorites() {
   const dispatch = useDispatch();
   const favoriteHotels = useSelector(getFavorites);
   const isLoaded = useSelector(getIsFavoritesDataLoaded);
+  const isDataError = useSelector(getIsDataError);
+  const isOffline = useSelector(getIsOffline);
   const noFavorites = favoriteHotels.length === 0;
 
   useEffect(() => {
@@ -31,6 +36,8 @@ function Favorites() {
       <HiddenSvg />
       <div className={`page ${noFavorites ? 'page--favorites-empty' : ''}`}>
         <Header />
+        {isOffline && <Toast message={AlertMessage.OFFLINE} />}
+        {isDataError && <Toast message={AlertMessage.LOADING} />}
         <main className={`page__main page__main--favorites ${noFavorites ? 'page__main--favorites-empty' : ''}`}>
           <div className="page__favorites-container container">
             {!favoriteHotels.length

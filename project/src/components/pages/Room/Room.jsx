@@ -8,13 +8,15 @@ import ReviewsList from '../../blocks/review/ReviewsList';
 import ReviewForm from '../../blocks/review/ReviewForm';
 import OffersList from '../../blocks/offers/OffersList';
 import Map from '../../blocks/map/Map';
+import Toast from '../../blocks/toast/toast';
 
 import offerProp from '../../blocks/offers/offer.prop';
 import reviewsProp from '../../blocks/review/review.prop';
 
 import { getRatingInPercent } from '../../../utils';
-import { AuthorizationStatus, NEARBY_TYPE } from '../../../const';
-import { getAuthorizationStatus } from '../../../store/user/selectors';
+import { AlertMessage, AuthorizationStatus, NEARBY_TYPE } from '../../../const';
+import { getAuthorizationStatus, getIsOffline } from '../../../store/user/selectors';
+import { getIsDataError } from '../../../store/data/selectors';
 import { sendFavorite } from '../../../store/api-action';
 
 function Room(props) {
@@ -42,6 +44,8 @@ function Room(props) {
   } = offer;
 
   const dispatch = useDispatch();
+  const isOffline = useSelector(getIsOffline);
+  const isDataError = useSelector(getIsDataError);
   const status = isFavorite ? '0' : '1';
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
@@ -51,6 +55,8 @@ function Room(props) {
       <HiddenSvg />
       <div className="page">
         <Header />
+        {isOffline && <Toast message={AlertMessage.OFFLINE} />}
+        {isDataError && <Toast />}
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">
