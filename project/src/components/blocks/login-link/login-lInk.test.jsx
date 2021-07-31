@@ -2,17 +2,17 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import Loading from './loading';
+import LoginLink from './login-link';
 
-describe('Loading', () => {
+describe('LoginLink component', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();
-    const { getByTestId } = render(
+    const { getByText } = render(
       <Router history={history}>
-        <Loading />
+        <LoginLink />
       </Router>,
     );
 
-    expect(getByTestId('loading-id')).toBeInTheDocument();
+    expect(getByText('Sign in')).toBeInTheDocument();
   });
 });

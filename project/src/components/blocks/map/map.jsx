@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import offerProp from '../../blocks/offers/offer.prop';
-import useMap from '../../../hooks/useMap';
-import useMapMarker from '../../../hooks/useMarkerMap';
+import useMap from '../../../hooks/use-map';
+import useMapMarker from '../../../hooks/use-marker-map';
 import cityProp from '../cities/city.prop';
 
 export default function Map({ offers, city, activeOffer }) {
