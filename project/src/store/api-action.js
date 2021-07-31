@@ -33,7 +33,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
       dispatch(requireAuth(AuthorizationStatus.AUTH));
       dispatch(loadUserInfo(adaptUserInfoToClient(data)));
     })
-    .catch(() => {})
+    .catch(() => dispatch(requireAuth(AuthorizationStatus.NO_AUTH)))
 );
 
 export const fetchReviews = (id) => (dispatch, _getState, api) => (

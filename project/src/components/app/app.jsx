@@ -44,7 +44,7 @@ function App() {
       <Route exact path={`${APP_ROUTES.OFFER}/:id`}>
         <RoomPage />
       </Route>
-      <Route exact path={APP_ROUTES.NOT_FOUND}>
+      <Route>
         <NotFound />
       </Route>
     </Switch>
