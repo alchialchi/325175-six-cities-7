@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Map from './Map';
+import Map from './map';
 import { offer } from '../../../mocks/offers';
 
 describe('Map', () => {
