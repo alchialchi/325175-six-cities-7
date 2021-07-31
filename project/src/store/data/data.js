@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loadFavorites, loadNearby, loadOffer, loadOffers, loadReviews, updateData } from '../action';
+import { loadFavorites, loadNearby, loadOffer, loadOffers, loadReviews, updateData, setDataError } from '../action';
 
 const initialState = {
   offers: [],
@@ -12,6 +12,7 @@ const initialState = {
   isNearbyOffersDataLoaded: false,
   isReviewsDataLoaded: false,
   isFavoritesDataLoaded: false,
+  isDataError: false,
 };
 
 const data = createReducer(initialState, (builder) => {
@@ -35,6 +36,9 @@ const data = createReducer(initialState, (builder) => {
     .addCase(loadFavorites, (state, action) => {
       state.favorites = action.payload;
       state.isFavoritesDataLoaded = true;
+    })
+    .addCase(setDataError, (state, { payload }) => {
+      state.isDataError = payload;
     })
     .addCase(updateData, (state, {payload}) => {
       state.offers = state.offers.map((offer) => offer.id === payload.id ? payload : offer);

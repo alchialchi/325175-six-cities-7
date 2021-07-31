@@ -7,9 +7,9 @@ import { createAPI } from './services/api';
 import { checkAuth, fetchOffersList } from './store/api-action';
 import App from './components/app/app';
 import rootReducer from './store/root-reducer';
-import { requireAuth } from './store/action';
+import { requireAuth, setIsOffline, setDataError } from './store/action';
 import { redirect } from './store/middlewares/redirect';
-import { AuthorizationStatus } from './const';
+import { AuthorizationStatus, OFFLINE_TITLE } from './const';
 import { Router as BrowserRouter } from 'react-router-dom';
 import browserHistory from './services/browser-history';
 
@@ -40,3 +40,14 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
+
+window.addEventListener('online', () => {
+  document.title = document.title.replace(OFFLINE_TITLE, '');
+  store.dispatch(setIsOffline(false));
+  store.dispatch(setDataError(false));
+});
+
+window.addEventListener('offline', () => {
+  document.title += OFFLINE_TITLE;
+  store.dispatch(setIsOffline(true));
+});

@@ -3,7 +3,7 @@ export const APP_ROUTES = {
   SIGN_IN: '/login',
   FAVORITES: '/favorites',
   OFFER: '/offer',
-  NOT_FOUND: '/not-found',
+  NOT_FOUND: '/404',
 };
 
 export const API_ROUTES = {
@@ -24,7 +24,7 @@ export const RATINGS = {
   1: 'terribly',
 };
 
-const ZOOM = 10;
+const ZOOM = 13;
 
 export const CITIES = {
   PARIS: {
@@ -157,3 +157,20 @@ export const NameSpace = {
   PROCESS: 'PROCESS',
   USER: 'USER',
 };
+
+export const COMMENT_LENGTH = {
+  MIN: 50,
+  MAX: 300,
+};
+
+export const AlertMessage = {
+  DEFAULT: 'Something went wrong. Please try again later!',
+  OFFLINE: 'Connection lost',
+  LOADING: 'Loading failure. Please try again later.',
+};
+
+export const DEFAULT_TIMEOUT = 5000;
+export const DEFAULT_RATING = '0';
+export const FIRST_ELEMENT = 0;
+export const MAX_REVIEWS = 10;
+export const OFFLINE_TITLE = ' [offline]';

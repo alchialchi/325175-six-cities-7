@@ -7,35 +7,35 @@ import configureStore from 'redux-mock-store';
 import { APP_ROUTES } from '../../const';
 import App from './app';
 
-jest.mock('../pages/Favorites/Favorites', () => ({
+jest.mock('../pages/favorites/favorites', () => ({
   __esModule: true,
   default() {
     return <>Favorites Screen</>;
   },
 }));
 
-jest.mock('../pages/MainPage/MainPage', () => ({
+jest.mock('../pages/main-page/main-page', () => ({
   __esModule: true,
   default() {
     return <>Main Screen</>;
   },
 }));
 
-jest.mock('../pages/SignIn/SignIn', () => ({
+jest.mock('../pages/sign-in/sign-in', () => ({
   __esModule: true,
   default() {
     return <>SignIn Screen</>;
   },
 }));
 
-jest.mock('../pages/Room/RoomPage', () => ({
+jest.mock('../pages/room/room-page', () => ({
   __esModule: true,
   default() {
     return <>Room Screen</>;
   },
 }));
 
-jest.mock('../pages/NotFound/NotFound', () => ({
+jest.mock('../pages/not-found/not-found', () => ({
   __esModule: true,
   default() {
     return <>NotFound Screen</>;

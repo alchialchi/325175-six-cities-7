@@ -19,3 +19,5 @@ export const getIsNearbyOffersDataLoaded = (state) => state[NameSpace.DATA].isNe
 export const getIsReviewsDataLoaded = (state) => state[NameSpace.DATA].isReviewsDataLoaded;
 
 export const getIsFavoritesDataLoaded = (state) => state[NameSpace.DATA].isFavoritesDataLoaded;
+
+export const getIsDataError = (state) => state[NameSpace.DATA].isDataError;

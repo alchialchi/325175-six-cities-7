@@ -14,6 +14,7 @@ describe('Data', () => {
       isNearbyOffersDataLoaded: false,
       isReviewsDataLoaded: false,
       isFavoritesDataLoaded: false,
+      isDataError: false,
     };
     expect(data(undefined, {})).toEqual(initialState);
   });
