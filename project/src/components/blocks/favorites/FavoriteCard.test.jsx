@@ -68,8 +68,6 @@ const city = 'Amsterdam';
 
 describe('OfferCard', () => {
   it('should render correctly', () => {
-    // const cardType = 'FAVORITES';
-
     render(
       <Provider store={mockStore(storeMockedData)}>
         <Router history={history}>

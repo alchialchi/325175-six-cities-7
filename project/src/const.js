@@ -3,7 +3,7 @@ export const APP_ROUTES = {
   SIGN_IN: '/login',
   FAVORITES: '/favorites',
   OFFER: '/offer',
-  NOT_FOUND: '/not-found',
+  NOT_FOUND: '/404',
 };
 
 export const API_ROUTES = {
