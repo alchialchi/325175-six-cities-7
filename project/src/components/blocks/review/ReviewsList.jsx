@@ -4,6 +4,7 @@ import uuid from 'react-uuid';
 
 import Review from './Review';
 import reviewsProp from './review.prop';
+import { FIRST_ELEMENT, MAX_REVIEWS } from '../../../const';
 
 export default function ReviewsList({ reviews }) {
   return (
@@ -12,7 +13,10 @@ export default function ReviewsList({ reviews }) {
         Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
       </h2>
       <ul className="reviews__list">
-        {reviews.map((review) => <Review key={uuid()} review={review}/> )}
+        {reviews
+          .slice(FIRST_ELEMENT, MAX_REVIEWS)
+          .reverse()
+          .map((review) => <Review key={uuid()} review={review}/> )}
       </ul>
     </React.Fragment>
   );

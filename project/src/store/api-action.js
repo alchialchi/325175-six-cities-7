@@ -53,7 +53,6 @@ export const createComment = (id, { comment, rating }) => (dispatch, _getState, 
         data.map((review) => adaptReviewToClient(review)),
       ));
     })
-    .catch(() => {})
 );
 
 export const login = ({ login: email, password }) => (dispatch, _getState, api) => (

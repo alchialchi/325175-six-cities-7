@@ -4,28 +4,65 @@ import { useDispatch } from 'react-redux';
 
 import { createComment } from '../../../store/api-action';
 import RatingList from '../rating/RatingList';
+import Toast from '../toast/Toast';
+import { COMMENT_LENGTH, TOAST_MESSAGES, DEFAULT_RATING } from '../../../const';
 
 function ReviewForm({ id }) {
   const dispatch = useDispatch();
 
   const initialState = {
     comment: '',
-    rating: '',
+    rating: DEFAULT_RATING,
   };
 
   const [review, setReview] = useState(initialState);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+  const [isSendingComment, setIsSendingComment] = useState(false);
+  const [isSendingError, setIsSendingError] = useState(false);
+
   const { comment, rating } = review;
+
+  const handleFormChange = () => {
+    setIsSubmitDisabled(!(comment.length > COMMENT_LENGTH.MIN
+      && comment.length < COMMENT_LENGTH.MAX
+      && rating > 0
+      && !isSendingComment));
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     e.target.reset();
 
-    dispatch(createComment(id, review));
-    setReview(initialState);
+    if (isSubmitDisabled || isSendingComment) {
+      return;
+    }
+
+    setIsSendingComment(true);
+    setIsSubmitDisabled(true);
+
+    dispatch(createComment(id, review))
+      .then(() => {
+        setIsSubmitDisabled(true);
+        setIsSendingComment(false);
+        setReview(initialState);
+      })
+      .catch(() => {
+        setIsSendingComment(false);
+        setIsSubmitDisabled(false);
+        setIsSendingError(true);
+      });
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={onSubmitHandler}>
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={onSubmitHandler}
+      onChange={handleFormChange}
+      onFocus={handleFormChange}
+    >
+      {isSendingError && <Toast message={TOAST_MESSAGES.REVIEW_ERROR} />}
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -47,7 +84,7 @@ function ReviewForm({ id }) {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled=""
+          disabled={isSubmitDisabled}
         >
           Submit
         </button>

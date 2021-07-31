@@ -157,3 +157,19 @@ export const NameSpace = {
   PROCESS: 'PROCESS',
   USER: 'USER',
 };
+
+export const COMMENT_LENGTH = {
+  MIN: 50,
+  MAX: 300,
+};
+
+export const TOAST_MESSAGES = {
+  DEFAULT: 'Something went wrong',
+  OFFLINE: 'Connection is lost',
+  REVIEW_ERROR: 'The review is not sent. Please try again',
+};
+
+export const DEFAULT_TIMEOUT = 2500;
+export const DEFAULT_RATING = '0';
+export const FIRST_ELEMENT = 0;
+export const MAX_REVIEWS = 10;
