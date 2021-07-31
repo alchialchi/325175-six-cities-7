@@ -7,7 +7,7 @@ import Header from '../../blocks/header/Header';
 import ReviewsList from '../../blocks/review/ReviewsList';
 import ReviewForm from '../../blocks/review/ReviewForm';
 import OffersList from '../../blocks/offers/OffersList';
-import Map from '../../blocks/map/Map';
+import Map from '../../blocks/map/map';
 import Toast from '../../blocks/toast/toast';
 
 import offerProp from '../../blocks/offers/offer.prop';

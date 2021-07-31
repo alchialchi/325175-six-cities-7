@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { sendFavorite } from '../../../store/api-action';
 
 function OfferCard(props) {
-  const { offer, cardType = MAIN_TYPE, onMouseEnter = () => {}, onMouseLeave = () => {} } = props;
+  const { offer, cardType = MAIN_TYPE, onMouseEnter, onMouseLeave } = props;
 
   const {
     isPremium,
@@ -28,7 +28,7 @@ function OfferCard(props) {
 
   return (
     <article className={CARD_TYPES[cardType].PLACE_CARD}
-      onMouseEnter={() => onMouseEnter(id)} onMouseLeave={onMouseLeave}
+      onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
     >
       {isPremium ?
         <div className="place-card__mark">

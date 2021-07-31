@@ -25,8 +25,8 @@ function OffersList({
             key={offer.id}
             cardType={type}
             offer={offer}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
+            onMouseEnter={() => onMouseEnter(offer.id)}
+            onMouseLeave={() => onMouseLeave(null)}
           />
         ))}
     </div>

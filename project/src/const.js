@@ -24,7 +24,7 @@ export const RATINGS = {
   1: 'terribly',
 };
 
-const ZOOM = 10;
+const ZOOM = 13;
 
 export const CITIES = {
   PARIS: {

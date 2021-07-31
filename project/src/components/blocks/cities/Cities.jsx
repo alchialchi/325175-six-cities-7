@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Map from '../map/Map';
+import Map from '../map/map';
 import OffersList from '../offers/OffersList';
 import SortList from '../sort/SortList';
 import NoCities from '../cities/NoCities';
@@ -9,14 +9,19 @@ import { CARD_TYPES, CITIES } from '../../../const';
 import { sortOffers } from '../../../utils';
 import { getActiveOffer, getSortType, getCity } from '../../../store/work-process/selectors';
 import { getOffers } from '../../../store/data/selectors';
+import { setActiveOfferId } from '../../../store/action';
 
 export default function Cities() {
+  const dispatch = useDispatch();
   const city = useSelector(getCity);
   const allOffers = useSelector(getOffers);
   const activeOffer = useSelector(getActiveOffer);
   const sortType = useSelector(getSortType).name;
 
   const offers = useMemo(() => sortOffers(allOffers, sortType, city), [allOffers, sortType, city]);
+  const onMouseAction = (id) => {
+    dispatch(setActiveOfferId(id));
+  };
 
   if (!offers.length) {
     return <NoCities city={city} />;
@@ -31,7 +36,13 @@ export default function Cities() {
             {offers.length} places to stay in {city}
           </b>
           <SortList />
-          <OffersList offers={offers} activeOffer={activeOffer} type={CARD_TYPES.CITIES} />
+          <OffersList
+            offers={offers}
+            activeOffer={activeOffer}
+            type={CARD_TYPES.CITIES}
+            onMouseEnter={onMouseAction}
+            onMouseLeave={onMouseAction}
+          />
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
