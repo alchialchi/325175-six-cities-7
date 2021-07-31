@@ -54,6 +54,9 @@ describe('Main Page', () => {
         sortType: { name: 'default', text: 'Popular' },
         activeOffer: offers[0].id,
       },
+      USER: {
+        isOffline: false,
+      },
     };
 
     render(
@@ -78,6 +81,9 @@ describe('Main Page', () => {
         city: 'Paris',
         sortType: { name: 'default', text: 'Popular' },
         activeOffer: null,
+      },
+      USER: {
+        isOffline: false,
       },
     };
 

@@ -20,14 +20,13 @@ describe('OfferCard', () => {
   it('should render correctly', () => {
     const cardType = 'MAIN';
     const onMouseEnter = jest.fn();
-
     render(
       <Provider store={mockStore(storeMockedData)}>
         <Router history={history}>
           <OfferCard
             offer={offer}
             cardType={cardType}
-            onMouseEnter={onMouseEnter}
+            onMouseEnter={onMouseEnter(offer.id)}
           />
         </Router>
       </Provider>,

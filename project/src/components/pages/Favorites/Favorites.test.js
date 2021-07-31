@@ -26,6 +26,9 @@ describe('Favorites page', () => {
         isFavoritesDataLoaded: true,
       },
       PROCESS: { city: 'Paris' },
+      USER: {
+        isOffline: false,
+      },
     };
 
     const dispatch = jest.fn();
@@ -52,6 +55,9 @@ describe('Favorites page', () => {
         isFavoritesDataLoaded: true,
       },
       PROCESS: { city: 'Paris' },
+      USER: {
+        isOffline: false,
+      },
     };
 
     const dispatch = jest.fn();

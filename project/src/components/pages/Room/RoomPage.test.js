@@ -15,10 +15,11 @@ const storeMockedData = {
   DATA: {
     offer: offer,
     reviews: reviews,
-    nearbyOffers: offer,
+    nearbyOffers: [offer],
     isOfferDataLoaded: true,
     isNearbyOffersDataLoaded: true,
     isReviewsDataLoaded: true,
+    isDataError: false,
   },
   USER: {
     authorizationStatus: 'NO_AUTH',

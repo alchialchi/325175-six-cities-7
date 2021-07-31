@@ -6,14 +6,6 @@ import configureStore from 'redux-mock-store';
 import { createMemoryHistory } from 'history';
 import Room from './Room';
 
-const history = createMemoryHistory();
-const mockStore = configureStore();
-const storeMockedData = {
-  USER: {
-    authorizationStatus: 'NO_AUTH',
-  },
-};
-
 jest.mock('../../blocks/offers/OffersList', () => ({
   __esModule: true,
   default() {
@@ -119,12 +111,26 @@ const reviews = [
   },
 ];
 
+const history = createMemoryHistory();
+const mockStore = configureStore();
+const storeMockedData = {
+  USER: {
+    authorizationStatus: 'NO_AUTH',
+  },
+  DATA: {
+    isDataError: false,
+    offer: offer,
+    reviews: reviews,
+    nearbyOffers: [offer],
+  },
+};
+
 describe('Room', () => {
   it('should render component', () => {
     render(
       <Provider store={mockStore(storeMockedData)}>
         <Router history={history}>
-          <Room offer={offer} reviews={reviews} />
+          <Room offer={offer} reviews={reviews} nearbyOffers={[offer]} />
         </Router>
       </Provider>,
     );
