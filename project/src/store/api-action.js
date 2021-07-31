@@ -92,7 +92,7 @@ export const sendFavorite = (id, status, needUpdate = false) => (dispatch, _getS
       }
       dispatch(updateData(adaptOfferToClient(data)));
     })
-    .catch(() => dispatch(redirectToRoute(APP_ROUTES.LOGIN)))
+    .catch(() => dispatch(redirectToRoute(APP_ROUTES.SIGN_IN)))
 );
 
 export const isCheckedAuth = (authorizationStatus) => authorizationStatus === AuthorizationStatus.UNKNOWN;
