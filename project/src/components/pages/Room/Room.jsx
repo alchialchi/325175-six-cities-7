@@ -160,7 +160,7 @@ function Room(props) {
               </div>
             </div>
             <section className="property__map map">
-              <Map offers={nearbyOffers} city={city} activeOffer={offer} />
+              <Map offers={[offer, ...nearbyOffers]} city={city} activeOffer={offer.id} />
             </section>
           </section>
           <div className="container">
