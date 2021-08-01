@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
 
@@ -22,12 +22,12 @@ function ReviewForm({ id }) {
 
   const { comment, rating } = review;
 
-  const handleFormChange = () => {
+  useEffect(() => {
     setIsSubmitDisabled(!(comment.length > CommentLength.MIN
       && comment.length < CommentLength.MAX
-      && rating > 0
+      && Number(rating) > 0
       && !isSendingComment));
-  };
+  }, [comment, rating, isSendingComment]);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -59,8 +59,6 @@ function ReviewForm({ id }) {
       action="#"
       method="post"
       onSubmit={onSubmitHandler}
-      onChange={handleFormChange}
-      onFocus={handleFormChange}
     >
       {isSendingError && <Toast />}
       <label className="reviews__label form__label" htmlFor="review">
