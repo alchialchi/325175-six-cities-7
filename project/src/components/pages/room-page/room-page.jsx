@@ -12,7 +12,7 @@ import {
   getReviews
 } from '../../../store/data/selectors';
 import Loading from '../../blocks/loading/loading';
-import Room from './room';
+import Room from '../../blocks/room/room';
 
 function RoomPage() {
   const offerId = parseInt(useParams().id, 10);

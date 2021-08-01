@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import offerProp from '../../blocks/offers/offer.prop';
+import offerProp from '../offer-card/offer.prop';
 import useMap from '../../../hooks/use-map';
 import useMapMarker from '../../../hooks/use-marker-map';
 import cityProp from '../cities/city.prop';

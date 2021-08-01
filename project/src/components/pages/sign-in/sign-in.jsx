@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { login } from '../../../store/api-action';
 import Header from '../../blocks/header/header';
 import HiddenSvg from '../../svg/hidden-svg';
-import { AlertMessage, APP_ROUTES } from '../../../const';
+import { AlertMessage, AppRoute } from '../../../const';
 import { redirectToRoute } from '../../../store/action';
 import { getCity } from '../../../store/work-process/selectors';
 import { getAuthorizationStatus, getIsOffline } from '../../../store/user/selectors';
@@ -32,7 +32,7 @@ function SignIn() {
   };
 
   if (isAuthorized) {
-    dispatch(redirectToRoute(APP_ROUTES.ROOT));
+    dispatch(redirectToRoute(AppRoute.ROOT));
   }
 
   return (
@@ -72,12 +72,12 @@ function SignIn() {
                     pattern="^[^\s]+(\s.*)?$"
                   />
                 </div>
-                <button to={APP_ROUTES.ROOT} className="login__submit form__submit button" type="submit">Sign in</button>
+                <button to={AppRoute.ROOT} className="login__submit form__submit button" type="submit">Sign in</button>
               </form>
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
-                <Link className="locations__item-link" to={APP_ROUTES.ROOT}>
+                <Link className="locations__item-link" to={AppRoute.ROOT}>
                   <span>{city}</span>
                 </Link>
               </div>

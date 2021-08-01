@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import { createMemoryHistory } from 'history';
 
 import UserInfo from './user-info';
-import { APP_ROUTES } from '../../../const';
+import { AppRoute } from '../../../const';
 
 const mockStore = configureStore({});
 const history = createMemoryHistory();
@@ -32,6 +32,6 @@ describe('Component: UserInfo', () => {
       </Provider>,
     );
     expect(screen.getByText(/john-doe@whatever.com/i)).toBeInTheDocument();
-    expect(screen.getByRole('link', { href: APP_ROUTES.FAVORITES })).toBeInTheDocument();
+    expect(screen.getByRole('link', { href: AppRoute.FAVORITES })).toBeInTheDocument();
   });
 });

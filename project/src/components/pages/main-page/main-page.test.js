@@ -20,7 +20,7 @@ jest.mock('../../blocks/cities/cities', () => ({
   },
 }));
 
-jest.mock('../../blocks/locations/locations-list', () => ({
+jest.mock('../../blocks/locations-list/locations-list', () => ({
   __esModule: true,
   default() {
     return <div>LocationsList</div>;

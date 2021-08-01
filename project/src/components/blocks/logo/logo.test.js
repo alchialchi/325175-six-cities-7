@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 
 import Logo from './logo';
-import { APP_ROUTES } from '../../../const';
+import { AppRoute } from '../../../const';
 
 const history = createMemoryHistory();
 
@@ -16,6 +16,6 @@ describe('Logo component', () => {
       </Router>,
     );
 
-    expect(screen.getByRole('link', { href: APP_ROUTES.ROOT })).toBeInTheDocument();
+    expect(screen.getByRole('link', { href: AppRoute.ROOT })).toBeInTheDocument();
   });
 });

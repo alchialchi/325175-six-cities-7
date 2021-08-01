@@ -1,7 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 import { createAPI } from '../services/api';
 import { checkAuth, createComment, fetchFavorites, fetchNearbyOffers, fetchOffer, fetchOffersList, fetchReviews, login, logout, sendFavorite } from './api-action';
-import { API_ROUTES, APP_ROUTES, AuthorizationStatus } from '../const';
+import { ApiRoute, AppRoute, AuthorizationStatus } from '../const';
 import { ActionType } from './action';
 
 let api = null;
@@ -17,7 +17,7 @@ describe('Async operations', () => {
     const checkAuthLoader = checkAuth();
 
     apiMock
-      .onGet(API_ROUTES.LOGIN)
+      .onGet(ApiRoute.LOGIN)
       .reply(200, [{ fake: true }]);
 
     return checkAuthLoader(dispatch, () => {}, api)
@@ -38,7 +38,7 @@ describe('Async operations', () => {
     const loginLoader = login(fakeUser);
 
     apiMock
-      .onPost(API_ROUTES.LOGIN)
+      .onPost(ApiRoute.LOGIN)
       .reply(200, [{ fake: true }]);
 
     return loginLoader(dispatch, () => {}, api)
@@ -59,7 +59,7 @@ describe('Async operations', () => {
 
         expect(dispatch).toHaveBeenNthCalledWith(4, {
           type: ActionType.REDIRECT_TO_ROUTE,
-          payload: APP_ROUTES.ROOT,
+          payload: AppRoute.ROOT,
         });
       });
   });
@@ -70,7 +70,7 @@ describe('Async operations', () => {
     const logoutLoader = logout();
 
     apiMock
-      .onDelete(API_ROUTES.LOG_OUT)
+      .onDelete(ApiRoute.LOG_OUT)
       .reply(204);
 
     return logoutLoader(dispatch, () => {}, api)
@@ -89,7 +89,7 @@ describe('Async operations', () => {
     const hotelListLoader = fetchOffersList();
 
     apiMock
-      .onGet(API_ROUTES.HOTELS)
+      .onGet(ApiRoute.HOTELS)
       .reply(200, [{ fake: true }]);
 
     return hotelListLoader(dispatch, () => {}, api)
@@ -110,7 +110,7 @@ describe('Async operations', () => {
     const hotelLoader = fetchOffer(fakeId);
 
     apiMock
-      .onGet(`${API_ROUTES.HOTELS}/${fakeId}`)
+      .onGet(`${ApiRoute.HOTELS}/${fakeId}`)
       .reply(200, { fake: true });
 
     return hotelLoader(dispatch, () => {}, api)
@@ -131,7 +131,7 @@ describe('Async operations', () => {
     const nearbyListLoader = fetchNearbyOffers(fakeId);
 
     apiMock
-      .onGet(`${API_ROUTES.HOTELS}/${fakeId}/nearby`)
+      .onGet(`${ApiRoute.HOTELS}/${fakeId}/nearby`)
       .reply(200, [{fake: true}]);
 
     return nearbyListLoader(dispatch, () => {}, api)
@@ -152,7 +152,7 @@ describe('Async operations', () => {
     const reviewsListLoader = fetchReviews(fakeId);
 
     apiMock
-      .onGet(`${API_ROUTES.COMMENTS}/${fakeId}`)
+      .onGet(`${ApiRoute.COMMENTS}/${fakeId}`)
       .reply(200, [{ fake: true }]);
 
     return reviewsListLoader(dispatch, () => {}, api)
@@ -172,7 +172,7 @@ describe('Async operations', () => {
     const favoritesListLoader = fetchFavorites();
 
     apiMock
-      .onGet(API_ROUTES.FAVORITE)
+      .onGet(ApiRoute.FAVORITE)
       .reply(200, [{ fake: true }]);
 
     return favoritesListLoader(dispatch, () => {}, api)
@@ -197,7 +197,7 @@ describe('Async operations', () => {
     const createCommentLoader = createComment(fakeId, fakeMessage);
 
     apiMock
-      .onPost(`${API_ROUTES.COMMENTS}/${fakeId}`, fakeMessage)
+      .onPost(`${ApiRoute.COMMENTS}/${fakeId}`, fakeMessage)
       .reply(200, [{ fake: true }]);
 
     return createCommentLoader(dispatch, () => {}, api)
@@ -219,7 +219,7 @@ describe('Async operations', () => {
     const sendFavoriteLoader = sendFavorite(fakeId, fakeStatus);
 
     apiMock
-      .onPost(`${API_ROUTES.FAVORITE}/${fakeId}/${fakeStatus}`)
+      .onPost(`${ApiRoute.FAVORITE}/${fakeId}/${fakeStatus}`)
       .reply(200, { fake: true });
 
     return sendFavoriteLoader(dispatch, () => {}, api)

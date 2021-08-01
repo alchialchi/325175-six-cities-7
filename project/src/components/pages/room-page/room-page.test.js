@@ -26,14 +26,14 @@ const storeMockedData = {
   },
 };
 
-jest.mock('../../blocks/offers/offers-list', () => ({
+jest.mock('../../blocks/offers-list/offers-list', () => ({
   __esModule: true,
   default() {
     return <div>Offers</div>;
   },
 }));
 
-jest.mock('../../blocks/offers/offer-card', () => ({
+jest.mock('../../blocks/offer-card/offer-card', () => ({
   __esModule: true,
   default() {
     return <div>Offer</div>;
@@ -47,7 +47,7 @@ jest.mock('../../blocks/review/review', () => ({
   },
 }));
 
-jest.mock('../../blocks/review/reviews-list', () => ({
+jest.mock('../../blocks/reviews-list/reviews-list', () => ({
   __esModule: true,
   default() {
     return <div>Reviews List</div>;

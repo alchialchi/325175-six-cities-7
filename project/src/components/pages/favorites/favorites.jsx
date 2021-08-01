@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import HiddenSvg from '../../svg/hidden-svg';
 import Header from '../../blocks/header/header';
-import FavoritesList from '../../blocks/favorites/favorites-list';
+import FavoritesList from '../../blocks/favorites-list/favorites-list';
 import Toast from '../../blocks/toast/toast';
 
-import { APP_ROUTES } from '../../../const';
+import { AppRoute } from '../../../const';
 import { getFavorites, getIsFavoritesDataLoaded, getIsDataError } from '../../../store/data/selectors';
 import { getIsOffline } from '../../../store/user/selectors';
 import { fetchFavorites } from '../../../store/api-action';
-import FavoritesEmpty from '../../blocks/favorites/favorites-empty';
+import FavoritesEmpty from '../../blocks/favorites-empty/favorites-empty';
 import Loading from '../../blocks/loading/loading';
 import { AlertMessage } from '../../../const';
 
@@ -51,7 +51,7 @@ function Favorites() {
           </div>
         </main>
         <footer className="footer container">
-          <Link className="footer__logo-link" to={APP_ROUTES.ROOT}>
+          <Link className="footer__logo-link" to={AppRoute.ROOT}>
             <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
           </Link>
         </footer>

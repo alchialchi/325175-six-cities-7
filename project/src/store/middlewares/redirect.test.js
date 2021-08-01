@@ -1,6 +1,6 @@
 import { redirect } from './redirect';
 import { redirectToRoute } from '../action';
-import { APP_ROUTES } from '../../const';
+import { AppRoute } from '../../const';
 
 const mockRedux = () => {
   const store = {
@@ -25,21 +25,21 @@ jest.mock('../../services/browser-history', () => fakeHistory);
 describe('Middleware: redirect', () => {
   it('action should passes to next middleware', () => {
     const { invoke, next } = mockRedux();
-    const action = redirectToRoute(APP_ROUTES.ROOT);
+    const action = redirectToRoute(AppRoute.ROOT);
     invoke(action);
     expect(next).toHaveBeenCalledWith(action);
   });
 
   it('route should be added to fakeHistory', () => {
     const { invoke } = mockRedux();
-    invoke(redirectToRoute(APP_ROUTES.SIGN_IN));
-    expect(fakeHistory.location.pathname).toBe(APP_ROUTES.SIGN_IN);
+    invoke(redirectToRoute(AppRoute.SIGN_IN));
+    expect(fakeHistory.location.pathname).toBe(AppRoute.SIGN_IN);
 
-    invoke(redirectToRoute(APP_ROUTES.ROOT));
-    expect(fakeHistory.location.pathname).toBe(APP_ROUTES.ROOT);
+    invoke(redirectToRoute(AppRoute.ROOT));
+    expect(fakeHistory.location.pathname).toBe(AppRoute.ROOT);
 
-    invoke(redirectToRoute(APP_ROUTES.NOT_FOUND));
-    expect(fakeHistory.location.pathname).toBe(APP_ROUTES.NOT_FOUND);
+    invoke(redirectToRoute(AppRoute.NOT_FOUND));
+    expect(fakeHistory.location.pathname).toBe(AppRoute.NOT_FOUND);
   });
 
   it('should not redirect because wrong action', () => {

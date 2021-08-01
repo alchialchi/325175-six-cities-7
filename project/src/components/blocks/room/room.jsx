@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import HiddenSvg from '../../svg/hidden-svg';
-import Header from '../../blocks/header/header';
-import ReviewsList from '../../blocks/review/reviews-list';
-import ReviewForm from '../../blocks/review/review-form';
-import OffersList from '../../blocks/offers/offers-list';
-import Map from '../../blocks/map/map';
-import Toast from '../../blocks/toast/toast';
+import Header from '../header/header';
+import ReviewsList from '../reviews-list/reviews-list';
+import ReviewForm from '../review-form/review-form';
+import OffersList from '../offers-list/offers-list';
+import Map from '../map/map';
+import Toast from '../toast/toast';
 
-import offerProp from '../../blocks/offers/offer.prop';
-import reviewsProp from '../../blocks/review/review.prop';
+import offerProp from '../offer-card/offer.prop';
+import reviewsProp from '../review/review.prop';
 
 import { getRatingInPercent } from '../../../utils';
 import { AlertMessage, AuthorizationStatus, NEARBY_TYPE } from '../../../const';

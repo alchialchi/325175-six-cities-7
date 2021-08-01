@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 
 import LocationsList from './locations-list';
-import { CITIES } from '../../../const';
+import { City } from '../../../const';
 
 const mockStore = configureStore({});
 const history = createMemoryHistory();
@@ -19,7 +19,7 @@ describe('Component: LocationsList', () => {
         isOffersDataLoaded: false,
       },
       PROCESS: {
-        cities: Object.values(CITIES),
+        cities: Object.values(City),
       },
     };
 

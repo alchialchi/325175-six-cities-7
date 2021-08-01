@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
-import Review from './review';
-import reviewsProp from './review.prop';
+import Review from '../review/review';
+import reviewsProp from '../review/review.prop';
 import { FIRST_ELEMENT, MAX_REVIEWS } from '../../../const';
 
 export default function ReviewsList({ reviews }) {

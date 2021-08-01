@@ -3,7 +3,7 @@ import uuid from 'react-uuid';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { changeCity } from '../../../store/action';
-import LocationItem from './location-item';
+import LocationItem from '../location-item/location-item';
 import { getCities, getCity } from '../../../store/work-process/selectors';
 
 function LocationsList() {

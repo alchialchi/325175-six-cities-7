@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { RATINGS } from '../../../const';
+import { Rating } from '../../../const';
 export default function RatingList({ onChange, rating }) {
   return (
     <div className="reviews__rating-form form__rating">
-      {Object.keys(RATINGS).sort((a, b) => b - a).map((value, i) => (
+      {Object.keys(Rating).sort((a, b) => b - a).map((value, i) => (
         <React.Fragment key={value + i.toString()}>
           <input
             className="form__rating-input visually-hidden"
@@ -19,7 +19,7 @@ export default function RatingList({ onChange, rating }) {
           <label
             htmlFor={`${value}-stars`}
             className="reviews__rating-label form__rating-label"
-            title={RATINGS[value]}
+            title={Rating[value]}
           >
             <svg className="form__star-image" width="37" height="33">
               <use xlinkHref="#icon-star" />

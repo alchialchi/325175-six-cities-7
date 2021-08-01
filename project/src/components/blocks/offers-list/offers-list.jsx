@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { CARD_LIST_TYPES, MAIN_TYPE } from '../../../const';
+import { CardListType, MAIN_TYPE } from '../../../const';
 
-import offerProp from './offer.prop';
-import OfferCard from './offer-card';
+import offerProp from '../offer-card/offer.prop';
+import OfferCard from '../offer-card/offer-card';
 import { getIsOffersDataLoaded } from '../../../store/data/selectors';
 import Loading from '../loading/loading';
 
@@ -17,7 +17,7 @@ function OffersList({
   const isOffersDataLoaded = useSelector(getIsOffersDataLoaded);
 
   return (
-    <div className={CARD_LIST_TYPES[type].LIST}>
+    <div className={CardListType[type].LIST}>
       {!isOffersDataLoaded
         ? <Loading />
         : offers.map((offer) => (

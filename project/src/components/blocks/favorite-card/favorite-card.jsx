@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import offerProp from '../offers/offer.prop';
-import { FAVORITES_TYPE} from '../../../const';
-import OfferCard from '../offers/offer-card';
+import offerProp from '../offer-card/offer.prop';
+import { FAVORITES_TYPE } from '../../../const';
+import OfferCard from '../offer-card/offer-card';
 
 export default function FavoriteCard({ favoriteHotels, favoritesCity }) {
   const hotels = favoriteHotels.filter(
