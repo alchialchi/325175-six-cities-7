@@ -6,7 +6,7 @@ export const AppRoute = {
   NOT_FOUND: '/404',
 };
 
-export const ApiRoute= {
+export const APIRoute= {
   HOTELS: '/hotels',
   LOGIN: '/login',
   LOG_OUT: '/logout',
