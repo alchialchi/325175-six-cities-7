@@ -7,6 +7,7 @@ describe('User', () => {
     const initialState = {
       authorizationStatus: AuthorizationStatus.UNKNOWN,
       userInfo: {},
+      isOffline: false,
     };
 
     expect(user(undefined, {})).toEqual(initialState);

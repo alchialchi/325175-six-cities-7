@@ -1,10 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../../const';
-import { userLogout, requireAuth, loadUserInfo } from '../action';
+import { userLogout, requireAuth, loadUserInfo, setIsOffline } from '../action';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   userInfo: {},
+  isOffline: false,
 };
 
 const user = createReducer(initialState, (builder) => {
@@ -17,6 +18,9 @@ const user = createReducer(initialState, (builder) => {
     })
     .addCase(loadUserInfo, (state, action) => {
       state.userInfo = action.payload;
+    })
+    .addCase(setIsOffline, (state, action) => {
+      state.isOffline = action.payload;
     });
 });
 

@@ -14,6 +14,8 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: 'redirectToRoute',
   LOAD_USER_INFO: 'user/loadUserInfo',
   UPDATE_DATA: 'data/updateData',
+  SET_IS_OFFLINE: 'user/setIsOffline',
+  SET_DATA_ERROR: 'data/setDataError',
 };
 
 export const changeCity = createAction(ActionType.CHANGE_CITY, (city) => ({
@@ -63,5 +65,13 @@ export const loadFavorites = createAction(ActionType.LOAD_FAVORITES, (payload) =
 }));
 
 export const updateData = createAction(ActionType.UPDATE_DATA, (payload) => ({
+  payload,
+}));
+
+export const setIsOffline = createAction(ActionType.SET_IS_OFFLINE, (payload) => ({
+  payload,
+}));
+
+export const setDataError = createAction(ActionType.SET_DATA_ERROR, (payload) => ({
   payload,
 }));
