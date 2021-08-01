@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import MainPage from '../pages/main-page/main-page';
 import SignIn from '../pages/sign-in/sign-in';
 import Favorites from '../pages/favorites/favorites';
@@ -30,15 +30,18 @@ function App() {
       <Route exact path={AppRoute.ROOT}>
         <MainPage />
       </Route>
-      <Route
+      <PrivateRoute
         exact
         path={AppRoute.SIGN_IN}
-      >
-        <SignIn />
-      </Route>
+        status={AuthorizationStatus.NO_AUTH}
+        redirect={AppRoute.ROOT}
+        render={() => <SignIn />}
+      />
       <PrivateRoute
         exact
         path={AppRoute.FAVORITES}
+        status={AuthorizationStatus.AUTH}
+        redirect={AppRoute.SIGN_IN}
         render={() => <Favorites />}
       />
       <Route exact path={`${AppRoute.OFFER}/:id`}>

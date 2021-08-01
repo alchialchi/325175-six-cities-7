@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
 import PrivateRoute from './private-route';
 
-const mockStore = configureStore({});
+const mockStore = configureStore();
 let history;
 
 describe('PrivateRouter', () => {
@@ -30,6 +30,7 @@ describe('PrivateRouter', () => {
           <PrivateRoute
             exact
             path="/private"
+            redirect="/login"
             render={() => (<h1>Private Route</h1>)}
           />
         </Router>
@@ -54,6 +55,8 @@ describe('PrivateRouter', () => {
           <PrivateRoute
             exact
             path="/private"
+            redirect="/login"
+            status="AUTH"
             render={() => (<h1>Private Route</h1>)}
           />
         </Router>

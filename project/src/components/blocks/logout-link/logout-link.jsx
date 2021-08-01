@@ -11,7 +11,10 @@ function LogoutLink() {
     <Link
       className="header__nav-link"
       to={AppRoute.SIGN_IN}
-      onClick={() => dispatch(logout())}
+      onClick={(e) => {
+        e.preventDefault();
+        dispatch(logout());
+      }}
     >
       <span className="header__signout">Sign out</span>
     </Link>
