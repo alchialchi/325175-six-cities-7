@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import LocationsList from '../../blocks/locations/locations-list';
+import LocationsList from '../../blocks/locations-list/locations-list';
 import Header from '../../blocks/header/header';
 import Cities from '../../blocks/cities/cities';
 import Loading from '../../blocks/loading/loading';

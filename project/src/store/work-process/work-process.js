@@ -1,11 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { CITIES, SORT_TYPES } from '../../const';
+import { City, SortType } from '../../const';
 import { changeCity, setActiveOfferId, sort } from '../action';
 
 const initialState = {
-  cities: Object.values(CITIES),
-  city: CITIES.PARIS.name,
-  sortType: SORT_TYPES.DEFAULT,
+  cities: Object.values(City),
+  city: City.PARIS.name,
+  sortType: SortType.DEFAULT,
   activeOffer: null,
 };
 

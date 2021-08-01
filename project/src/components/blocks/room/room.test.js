@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import { createMemoryHistory } from 'history';
 import Room from './room';
 
-jest.mock('../../blocks/offers/offers-list', () => ({
+jest.mock('../../blocks/offers-list/offers-list', () => ({
   __esModule: true,
   default() {
     return <div>Mocked offers</div>;
@@ -20,7 +20,7 @@ jest.mock('../../blocks/review/review', () => ({
   },
 }));
 
-jest.mock('../../blocks/review/reviews-list', () => ({
+jest.mock('../../blocks/reviews-list/reviews-list', () => ({
   __esModule: true,
   default() {
     return <div>Mocked review list</div>;

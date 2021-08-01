@@ -3,9 +3,9 @@ import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { createComment } from '../../../store/api-action';
-import RatingList from '../rating/rating-list';
+import RatingList from '../rating-list/rating-list';
 import Toast from '../toast/toast';
-import { COMMENT_LENGTH, DEFAULT_RATING } from '../../../const';
+import { CommentLength, DEFAULT_RATING } from '../../../const';
 
 function ReviewForm({ id }) {
   const dispatch = useDispatch();
@@ -23,8 +23,8 @@ function ReviewForm({ id }) {
   const { comment, rating } = review;
 
   const handleFormChange = () => {
-    setIsSubmitDisabled(!(comment.length > COMMENT_LENGTH.MIN
-      && comment.length < COMMENT_LENGTH.MAX
+    setIsSubmitDisabled(!(comment.length > CommentLength.MIN
+      && comment.length < CommentLength.MAX
       && rating > 0
       && !isSendingComment));
   };

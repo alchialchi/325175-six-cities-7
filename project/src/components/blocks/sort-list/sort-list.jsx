@@ -3,8 +3,8 @@ import uuid from 'react-uuid';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { sort } from '../../../store/action';
-import { SORT_TYPES } from '../../../const';
-import SortItem from './sort-item';
+import { SortType } from '../../../const';
+import SortItem from '../sort-item/sort-item';
 import { getSortType } from '../../../store/work-process/selectors';
 
 function SortList() {
@@ -31,7 +31,7 @@ function SortList() {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}`}>
-        {Object.keys(SORT_TYPES).map((item) => (
+        {Object.keys(SortType).map((item) => (
           <SortItem
             key={uuid()}
             type={item}

@@ -1,13 +1,13 @@
 import { workProcess } from './work-process';
 import { ActionType } from '../action';
-import { CITIES, SORT_TYPES } from '../../const';
+import { City, SortType } from '../../const';
 
 describe('Work Process', () => {
   it('should return initial state by default', () => {
     const initialState = {
-      city: CITIES.PARIS.name,
-      cities: Object.values(CITIES),
-      sortType: SORT_TYPES.DEFAULT,
+      city: City.PARIS.name,
+      cities: Object.values(City),
+      sortType: SortType.DEFAULT,
       activeOffer: null,
     };
 
@@ -16,7 +16,7 @@ describe('Work Process', () => {
 
   it('should change city name', () => {
     const state = {
-      city: CITIES.PARIS.name,
+      city: City.PARIS.name,
     };
     const changedCityName = 'Colonge';
 
@@ -33,10 +33,10 @@ describe('Work Process', () => {
 
   it('should change sort type', () => {
     const state = {
-      sortType: SORT_TYPES.DEFAULT,
+      sortType: SortType.DEFAULT,
     };
     const sortType = {
-      sortType: SORT_TYPES.HIGH_TO_LOW,
+      sortType: SortType.HIGH_TO_LOW,
     };
     const sortAction = {
       type: ActionType.SORT,

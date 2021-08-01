@@ -1,4 +1,4 @@
-export const APP_ROUTES = {
+export const AppRoute = {
   ROOT: '/',
   SIGN_IN: '/login',
   FAVORITES: '/favorites',
@@ -6,7 +6,7 @@ export const APP_ROUTES = {
   NOT_FOUND: '/404',
 };
 
-export const API_ROUTES = {
+export const APIRoute= {
   HOTELS: '/hotels',
   LOGIN: '/login',
   LOG_OUT: '/logout',
@@ -16,7 +16,7 @@ export const API_ROUTES = {
 
 export const MAX_RATING = 5;
 
-export const RATINGS = {
+export const Rating = {
   5: 'perfect',
   4: 'good',
   3: 'not bad',
@@ -26,7 +26,7 @@ export const RATINGS = {
 
 const ZOOM = 13;
 
-export const CITIES = {
+export const City = {
   PARIS: {
     name: 'Paris',
     location: {
@@ -77,7 +77,7 @@ export const CITIES = {
   },
 };
 
-export const SORT_TYPES = {
+export const SortType = {
   DEFAULT: {
     name: 'default',
     text: 'Popular',
@@ -96,14 +96,14 @@ export const SORT_TYPES = {
   },
 };
 
-export const OFFER_TYPES = {
-  apartment: 'Apartment',
-  room: 'Private Room',
-  house: 'House',
-  hotel: 'Hotel',
+export const OfferType = {
+  APARTMENT: 'Apartment',
+  ROOM: 'Private Room',
+  HOUSE: 'House',
+  HOTEL: 'Hotel',
 };
 
-export const CARD_TYPES = {
+export const CardType = {
   MAIN: {
     PLACE_CARD: 'cities__place-card place-card',
     IMAGE_WRAPPER: 'cities__image-wrapper place-card__image-wrapper',
@@ -133,7 +133,7 @@ export const CARD_TYPES = {
   },
 };
 
-export const CARD_LIST_TYPES = {
+export const CardListType = {
   MAIN: {
     LIST: 'cities__places-list places__list tabs__content',
   },
@@ -158,7 +158,7 @@ export const NameSpace = {
   USER: 'USER',
 };
 
-export const COMMENT_LENGTH = {
+export const CommentLength = {
   MIN: 50,
   MAX: 300,
 };

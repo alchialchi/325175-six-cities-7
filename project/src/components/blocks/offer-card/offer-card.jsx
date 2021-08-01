@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import offerProp from './offer.prop';
 import { getRatingInPercent } from '../../../utils';
-import { OFFER_TYPES, CARD_TYPES, APP_ROUTES, MAIN_TYPE } from '../../../const';
+import { OfferType, CardType, AppRoute, MAIN_TYPE } from '../../../const';
 import { useDispatch } from 'react-redux';
 import { sendFavorite } from '../../../store/api-action';
 
@@ -27,7 +27,7 @@ function OfferCard(props) {
   const bookmarkClasses = 'place-card__bookmark-button button';
 
   return (
-    <article className={CARD_TYPES[cardType].PLACE_CARD}
+    <article className={CardType[cardType].PLACE_CARD}
       onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
     >
       {isPremium ?
@@ -35,18 +35,18 @@ function OfferCard(props) {
           <span>Premium</span>
         </div>
         : null}
-      <div className={CARD_TYPES[cardType].IMAGE_WRAPPER}>
-        <Link to={`${APP_ROUTES.OFFER}/${id}`}>
+      <div className={CardType[cardType].IMAGE_WRAPPER}>
+        <Link to={`${AppRoute.OFFER}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
-            width={CARD_TYPES[cardType].IMAGE.WIDTH}
-            height={CARD_TYPES[cardType].IMAGE.HEIGHT}
+            width={CardType[cardType].IMAGE.WIDTH}
+            height={CardType[cardType].IMAGE.HEIGHT}
             alt="Place"
           />
         </Link>
       </div>
-      <div className={CARD_TYPES[cardType].CARD_INFO}>
+      <div className={CardType[cardType].CARD_INFO}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -76,9 +76,9 @@ function OfferCard(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${APP_ROUTES.OFFER}/${id}`}>{title}</Link>
+          <Link to={`${AppRoute.OFFER}/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{OFFER_TYPES[type]}</p>
+        <p className="place-card__type">{OfferType[type]}</p>
       </div>
     </article>
   );

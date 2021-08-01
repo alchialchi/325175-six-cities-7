@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Map from '../map/map';
-import OffersList from '../offers/offers-list';
-import SortList from '../sort/sort-list';
-import NoCities from './no-cities';
-import { CARD_TYPES, CITIES } from '../../../const';
+import OffersList from '../offers-list/offers-list';
+import SortList from '../sort-list/sort-list';
+import NoCities from '../no-cities/no-cities';
+import { CardType, City } from '../../../const';
 import { sortOffers } from '../../../utils';
 import { getActiveOffer, getSortType, getCity } from '../../../store/work-process/selectors';
 import { getOffers } from '../../../store/data/selectors';
@@ -39,14 +39,14 @@ export default function Cities() {
           <OffersList
             offers={offers}
             activeOffer={activeOffer}
-            type={CARD_TYPES.CITIES}
+            type={CardType.CITIES}
             onMouseEnter={onMouseAction}
             onMouseLeave={onMouseAction}
           />
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
-            <Map city={CITIES[city.toUpperCase()]} activeOffer={activeOffer} offers={offers}/>
+            <Map city={City[city.toUpperCase()]} activeOffer={activeOffer} offers={offers}/>
           </section>
         </div>
       </div>
